@@ -4,6 +4,8 @@
 
 RCOS (Repository Context Operating System) is a repository context framework for human + AI software collaboration. It is designed to help teams keep context explicit, scope controlled, authority boundaries clear, and code/documentation aligned as AI becomes part of the development workflow.
 
+A key part of that value is that much of the working context can be generated and maintained by the AI itself, reducing human documentation overhead while also using context maintenance as a way to refresh and stabilize codebase awareness.
+
 This repository is a reusable asset pack for bringing RCOS into new projects or existing codebases.
 
 It is not meant to host one specific product. Instead, it provides reusable RCOS infrastructure, including:
@@ -35,6 +37,8 @@ It is not meant to host one specific product. Instead, it provides reusable RCOS
 ## What RCOS Is
 
 RCOS is built around a simple idea: AI collaboration works better when the model reads less context, but the right context.
+
+In RCOS, context is not only something the AI consumes. It is also something the AI can actively generate, maintain, and use to reorganize and refresh its own understanding of the codebase over time.
 
 In practice, RCOS usually works by:
 
