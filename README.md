@@ -2,11 +2,15 @@
 
 中文版简介: [README.zh-CN.md](./README.zh-CN.md)
 
+Guide what AI reads — and you control what it does.
+
+## An operating system for AI-assisted software development
+
 RCOS (Repository Context Operating System) is a repository context framework for human + AI software collaboration. It is designed to help teams keep context explicit, scope controlled, authority boundaries clear, and code/documentation aligned as AI becomes part of the development workflow.
 
 A key part of that value is that much of the working context can be generated and maintained by the AI itself, reducing human documentation overhead while also using context maintenance as a way to refresh and stabilize codebase awareness.
 
-This repository is a reusable asset pack for bringing RCOS into new projects or existing codebases.
+This repository contains reusable assets for introducing RCOS into new projects or existing codebases.
 
 It is not meant to host one specific product. Instead, it provides reusable RCOS infrastructure, including:
 
@@ -20,7 +24,12 @@ It is not meant to host one specific product. Instead, it provides reusable RCOS
 
 ## Table Of Contents
 
+- [What It Feels Like](#what-it-feels-like)
 - [What RCOS Is](#what-rcos-is)
+- [Why RCOS Exists](#why-rcos-exists)
+- [Quick Start](#quick-start)
+- [Example Workflow](#example-workflow)
+- [What RCOS Is Not](#what-rcos-is-not)
 - [Repository Purpose](#repository-purpose)
 - [Use Cases](#use-cases)
 - [Main Contents](#main-contents)
@@ -34,11 +43,35 @@ It is not meant to host one specific product. Instead, it provides reusable RCOS
 - [Maintenance Notes](#maintenance-notes)
 - [License](#license)
 
+## What It Feels Like
+
+If you've ever felt that AI coding works until it suddenly doesn't, RCOS is designed for that moment.
+
+Without RCOS:
+
+- AI scans large parts of the repository and loses focus
+- context drifts across conversations
+- changes conflict or duplicate existing logic
+- documentation becomes unreliable quickly
+
+With RCOS:
+
+- AI reads only the files that matter
+- every non-trivial change starts with an explicit plan
+- scope stays controlled
+- code and context stay in sync over time
+
+RCOS turns AI coding from "guessing the repo" into a controlled collaboration system.
+
 ## What RCOS Is
 
 RCOS is built around a simple idea: AI collaboration works better when the model reads less context, but the right context.
 
 In RCOS, context is not only something the AI consumes. It is also something the AI can actively generate, maintain, and use to reorganize and refresh its own understanding of the codebase over time.
+
+RCOS is not just a set of prompts, but a way to structure how humans and AI collaborate on code.
+
+RCOS defines how context is structured, how attention is allocated, and how changes are introduced into a codebase with AI in the loop.
 
 In practice, RCOS usually works by:
 
@@ -47,12 +80,69 @@ In practice, RCOS usually works by:
 - enforcing a plan-before-code workflow so scope, intent, and change plans are made explicit first
 - keeping RCOS documentation updated alongside code so the context layer stays trustworthy
 
-RCOS is especially useful for:
+## Why RCOS Exists
 
-- bootstrapping new projects
-- building project context for existing codebases
-- onboarding fresh AI conversations
-- maintaining alignment across multi-turn, multi-conversation, or multi-person AI collaboration
+Without a system like RCOS, AI-assisted development often runs into problems such as:
+
+- the model scans too much irrelevant code and loses focus
+- important project assumptions remain implicit and become inconsistent across conversations
+- different AI sessions produce conflicting changes or duplicate logic
+- scope expands silently during implementation
+- documentation drifts away from the actual codebase and stops being trustworthy
+
+RCOS addresses these issues by making context explicit, scoped, and continuously maintained alongside code.
+
+Instead of relying on the model to "figure out the repo," RCOS defines how context is structured, selected, and updated.
+
+## Quick Start
+
+1. Copy `.rcos/` and `.cursor/` into your project.
+2. Open the project in your coding environment.
+3. Start a new AI conversation.
+4. Paste the appropriate onboarding prompt from `.rcos/prompts/`.
+5. Provide the current task plus the minimum relevant project files.
+6. Follow the RCOS loop: plan -> confirm -> implement -> update context.
+
+You now have a controlled AI collaboration loop with explicit context and approval gates.
+
+## Example Workflow
+
+User:
+"Add caching to the news retrieval module."
+
+AI (RCOS):
+1. Scope Check
+2. Context Summary
+3. Change Intent
+4. Change Plan
+
+User:
+"Approved."
+
+AI:
+- implements the minimal change set
+- verifies the change
+- updates relevant RCOS context files if needed
+
+This loop keeps implementation controlled and aligned with project context.
+
+RCOS turns AI from a code generator into a controlled collaborator.
+
+## What RCOS Is Not
+
+RCOS is not:
+
+- a framework for building AI agents
+- a code generation library
+- a replacement for version control
+- a guarantee that the model will always behave correctly
+
+RCOS is:
+
+- a system for structuring and controlling AI collaboration
+- a way to make project context explicit and maintainable
+- a discipline for keeping code and context aligned over time
+- reusable prompt and workflow infrastructure for stable AI-assisted development
 
 ## Repository Purpose
 
