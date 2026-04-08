@@ -1,97 +1,101 @@
 # RCOS Bootstrap Pack
 
-RCOS（Repository Context Operating System）是一套面向人类与通用 AI 协作开发的仓库上下文操作系统。它的核心目标不是替代工程判断，而是用最小必要上下文、明确的 authority 边界和 plan-first workflow，持续降低 authority drift、intent loss、attention sprawl 和 verification gaps。
+中文版简介: [README.zh-CN.md](./README.zh-CN.md)
 
-一个用于在新项目或既有代码仓库中快速引入 RCOS 的可复用资产仓库。
+RCOS (Repository Context Operating System) is a repository context framework for human + AI software collaboration. It is designed to help teams keep context explicit, scope controlled, authority boundaries clear, and code/documentation aligned as AI becomes part of the development workflow.
 
-这个仓库的目标不是承载某个具体业务系统，而是提供一套可复制、可解压、可扩展的 RCOS 基础设施，包括：
+This repository is a reusable asset pack for bringing RCOS into new projects or existing codebases.
 
-- RCOS 通用模板
-- project-specific RCOS bootstrap 提示词
-- 新 conversation onboarding 提示词
-- 日常协作 prompt
-- 既有代码库补建 RCOS 的 prompt 与 checklist
-- 一个可直接解压到新项目目录中的 bootstrap pack
-- 一个成功项目的 example seed，供 AI 参考结构与写法
+It is not meant to host one specific product. Instead, it provides reusable RCOS infrastructure, including:
+
+- core RCOS templates
+- project-specific RCOS bootstrap prompts
+- new-conversation onboarding prompts
+- day-to-day collaboration prompts
+- existing-codebase RCOS bootstrap prompts and checklists
+- a bootstrap pack that can be extracted directly into a new repository
+- an example seed project for structure and writing reference
 
 ## Table Of Contents
 
-- [RCOS 简介](#rcos-简介)
-- [仓库用途](#仓库用途)
-- [适用场景](#适用场景)
-- [主要内容](#主要内容)
-- [目录结构](#目录结构)
-- [推荐使用方式](#推荐使用方式)
-- [新项目初始化](#新项目初始化)
-- [既有代码库补建 RCOS](#既有代码库补建-rcos)
-- [新 Conversation Onboarding](#新-conversation-onboarding)
-- [Bootstrap Pack 与 Example Seed](#bootstrap-pack-与-example-seed)
-- [Prompt 导航](#prompt-导航)
-- [维护建议](#维护建议)
+- [What RCOS Is](#what-rcos-is)
+- [Repository Purpose](#repository-purpose)
+- [Use Cases](#use-cases)
+- [Main Contents](#main-contents)
+- [Directory Structure](#directory-structure)
+- [Recommended Starting Points](#recommended-starting-points)
+- [Bootstrapping a New Project](#bootstrapping-a-new-project)
+- [Adding RCOS to an Existing Codebase](#adding-rcos-to-an-existing-codebase)
+- [Onboarding a New Conversation](#onboarding-a-new-conversation)
+- [Bootstrap Pack and Example Seed](#bootstrap-pack-and-example-seed)
+- [Prompt Navigation](#prompt-navigation)
+- [Maintenance Notes](#maintenance-notes)
 - [License](#license)
 
-## RCOS 简介
+## What RCOS Is
 
-RCOS 关注的不是“让 AI 多读代码”，而是“让 AI 在正确的边界内读足够少但足够关键的上下文”。
+RCOS is built around a simple idea: AI collaboration works better when the model reads less context, but the right context.
 
-它通常通过以下机制工作：
+In practice, RCOS usually works by:
 
-- 先读取最小必要上下文，而不是默认扫描整个仓库
-- 用 project-specific context files 声明当前项目的事实、assumptions 和 module authority
-- 用 plan-before-code workflow 让 AI 先明确 scope、intent 和 change plan
-- 在代码变更后同步维护 RCOS 文档，避免代码与上下文层逐渐失配
+- loading minimal necessary context instead of defaulting to full-repo scans
+- storing project facts, assumptions, and module authority in project-specific context files
+- enforcing a plan-before-code workflow so scope, intent, and change plans are made explicit first
+- keeping RCOS documentation updated alongside code so the context layer stays trustworthy
 
-RCOS 适合这些场景：
+RCOS is especially useful for:
 
-- 新项目 bootstrap
-- 既有代码库补建 project context
-- 新 conversation 接管已有项目
-- 多轮、多会话、多人协作中的上下文对齐与行为约束
+- bootstrapping new projects
+- building project context for existing codebases
+- onboarding fresh AI conversations
+- maintaining alignment across multi-turn, multi-conversation, or multi-person AI collaboration
 
-## 仓库用途
+## Repository Purpose
 
-这个仓库用于沉淀一套通用 RCOS 协作资产，帮助团队在以下场景中更稳定地使用 AI：
+This repository exists to package reusable RCOS collaboration assets so teams can adopt a more stable AI-assisted development workflow.
 
-- 为新项目建立最初的 RCOS 结构
-- 为已有代码库补建 RCOS project-specific context
-- 在新的 AI conversation 中快速完成 onboarding
-- 在日常协作中维持 plan-before-code、最小 scope、authority 对齐和 RCOS 文档同步
+It helps with:
 
-## 适用场景
+- initializing RCOS in new projects
+- building project-specific RCOS context for existing repositories
+- quickly onboarding a new AI conversation into an existing project
+- maintaining plan-before-code, narrow scope, authority alignment, and documentation sync in daily collaboration
 
-这套资产主要适用于三类工作：
+## Use Cases
 
-1. 新项目 bootstrap
-   适合一个全新的 repo，需要同时初始化代码和 `.rcos/manifest/project/*`
+These assets are mainly useful in three situations:
 
-2. 既有代码库接入 RCOS
-   适合一个已经有代码、文档和历史包袱的仓库，需要分阶段扫描并补建 project-specific RCOS 文件
+1. New project bootstrap
+   For a brand-new repository where code and `.rcos/manifest/project/*` need to be initialized together.
 
-3. 新 conversation 接管已有项目
-   适合上下文有限、需要快速让 AI 读规则、读 project context、形成稳定协作方式
+2. Existing codebase RCOS adoption
+   For a repository that already has code, docs, and historical complexity, and needs staged scanning plus project-specific RCOS files.
 
-## 主要内容
+3. New conversation handoff
+   For cases where context is limited and a new AI conversation needs to quickly learn the rules, project context, and collaboration style.
 
-本仓库一般会包含这些资产：
+## Main Contents
+
+A typical RCOS asset repository includes:
 
 - `.rcos/manifest/templates/`
-  RCOS 通用模板与规则真相源
+  The main source of truth for reusable RCOS templates and rules.
 
 - `.rcos/prompts/`
-  可直接复制到对话中的实用 prompt
+  Practical prompts that can be copied directly into conversations.
 
 - `.cursor/rules/`
-  本地 agent 行为约束，例如 approval gate
+  Local agent behavior constraints, such as approval gates.
 
 - `rcos_bootstrap_pack_with_examples.zip`
-  可直接解压进新项目目录的 bootstrap pack
+  A bootstrap pack that can be extracted into a new project directory.
 
 - `.rcos_examples/`
-  成功项目的 example seed，只作范例参考，不是当前项目的事实来源
+  A successful example project kept only as a reference seed, not as the active truth layer.
 
-## 目录结构
+## Directory Structure
 
-一个典型的结构会类似于：
+A typical layout looks like this:
 
 ```text
 .rcos/
@@ -109,138 +113,138 @@ RCOS 适合这些场景：
 rcos_bootstrap_pack_with_examples.zip
 ```
 
-说明：
+Notes:
 
-- `.rcos/manifest/templates/` 是通用模板层
-- `.rcos/manifest/project/` 是当前项目的 project-specific truth layer
-- `.rcos/prompts/` 是实际使用时最方便复制的 prompt 集合
-- `.rcos_examples/` 是示例项目目录，只能作为 example seed
+- `.rcos/manifest/templates/` is the reusable template layer.
+- `.rcos/manifest/project/` is the active project-specific truth layer.
+- `.rcos/prompts/` holds the most copy-friendly prompts.
+- `.rcos_examples/` is for example seed projects only.
 
-## 推荐使用方式
+## Recommended Starting Points
 
-推荐优先从这两个文件开始：
+The two best entry points are:
 
 - `.rcos/prompts/BOOTSTRAP_PACK_USAGE_NOTE.md`
 - `.rcos/prompts/PROMPT_CATALOG.md`
 
-前者告诉你 bootstrap pack 该怎么解压和使用，后者告诉你不同场景该选哪个 prompt。
+The first explains how to unpack and use the bootstrap pack. The second helps you choose the right prompt for each situation.
 
-## 新项目初始化
+## Bootstrapping a New Project
 
-如果你面对的是一个全新的项目仓库，推荐流程是：
+For a brand-new repository, the recommended flow is:
 
-1. 准备项目目标、技术方向、初始功能范围
-2. 参考：
+1. Prepare the project goal, technical direction, and initial scope.
+2. Review:
    - `.rcos/prompts/NEW_PROJECT_BOOTSTRAP_MATERIALS_CHECKLIST.md`
-3. 在新 conversation 中使用：
+3. Start a new AI conversation with:
    - `.rcos/prompts/NEW_PROJECT_RCOS_BOOTSTRAP_PROMPT.md`
-4. 如果项目更复杂，改用：
+4. For more complex setups, use:
    - `.rcos/prompts/NEW_PROJECT_RCOS_BOOTSTRAP_PROMPT_VERBOSE.md`
 
-目标通常是：
+The goal is usually to:
 
-- 初始化代码结构
-- 引入 RCOS 通用模板
-- 同时生成完整的 `.rcos/manifest/project/*`
+- initialize the code structure
+- bring in reusable RCOS templates
+- generate a complete `.rcos/manifest/project/*` layer for the new project
 
-## 既有代码库补建 RCOS
+## Adding RCOS to an Existing Codebase
 
-如果你面对的是一个已经存在代码和文档的仓库，推荐流程是：
+For an existing repository with code and docs already in place, the recommended flow is:
 
-1. 准备 README、目录树、入口文件和工程师口头背景
-2. 参考：
+1. Prepare the README, directory tree, entry files, and engineer-provided background.
+2. Review:
    - `.rcos/prompts/EXISTING_CODEBASE_RCOS_BOOTSTRAP_MATERIALS_CHECKLIST.md`
-3. 在一个专门的新 conversation 中使用：
+3. Use a dedicated new conversation with:
    - `.rcos/prompts/EXISTING_CODEBASE_RCOS_BOOTSTRAP_PROMPT.md`
 
-这类会话的重点不是立即开发功能，而是：
+The focus in this kind of session is not immediate feature work, but:
 
-- 分阶段扫描代码
-- 区分 confirmed facts / working assumptions / open questions
-- 在扫描过程中持续向工程师确认关键事实
-- 最终生成或更新 project-specific RCOS 文件
+- scanning the codebase in stages
+- separating confirmed facts, working assumptions, and open questions
+- checking key points with engineers while scanning
+- eventually generating or refining project-specific RCOS files
 
-## 新 Conversation Onboarding
+## Onboarding a New Conversation
 
-如果项目已经有完整的 `.rcos/manifest/project/*`，而你只是要在新 conversation 中快速接管它，优先使用：
+If a project already has a complete `.rcos/manifest/project/*` layer and you only need a new conversation to take over, start with:
 
 - `.rcos/prompts/NEW_CONVERSATION_ONBOARDING_PROMPT.md`
 
-如果还要继续日常开发，则可以配合：
+For continued day-to-day work, pair it with:
 
 - `.rcos/prompts/DAILY_ROUTINE_PROMPT.md`
 
-## Bootstrap Pack 与 Example Seed
+## Bootstrap Pack and Example Seed
 
-`rcos_bootstrap_pack_with_examples.zip` 的设计目标是：
+`rcos_bootstrap_pack_with_examples.zip` is designed to:
 
-- 让你把一套可用的 RCOS 基础设施直接解压进新项目目录
-- 同时附带一个成功项目的 example seed，帮助 AI 参考结构和写法
+- let you extract a ready-to-use RCOS foundation into a new repository
+- include a successful example seed project to show structure and writing style
 
-关键原则：
+Key principle:
 
-- 活跃的 `.rcos/manifest/project/*` 必须属于当前项目
-- `.rcos_examples/<seed-project>/` 只能作为 example seed
-- example seed 只能帮助 AI 学习：
-  - 目录组织方式
-  - prompt 写法
-  - RCOS project files 的粒度与风格
-  - 协作约束如何落盘
+- the active `.rcos/manifest/project/*` must belong to the current project
+- `.rcos_examples/<seed-project>/` is only an example seed
+- the example seed may teach the AI about:
+  - directory organization
+  - prompt writing style
+  - the typical granularity of RCOS project files
+  - how collaboration constraints are recorded
 
-AI 不应直接继承 example seed 中的：
+The AI should not directly inherit from the example seed:
 
-- 项目名称
-- 产品目标
+- project name
+- product goals
 - assumptions
 - codebase map
 - module authority
-- 项目状态
+- project status
 
-## Prompt 导航
+## Prompt Navigation
 
-如果不确定该用哪个 prompt，优先看：
+If you are not sure which prompt to use, start with:
 
 - `.rcos/prompts/PROMPT_CATALOG.md`
 
-通常可以这样选：
+Typical choices are:
 
-- 新项目初始化：
+- New project bootstrap:
   `NEW_PROJECT_RCOS_BOOTSTRAP_PROMPT.md`
 
-- 新项目复杂初始化：
+- More complex new project bootstrap:
   `NEW_PROJECT_RCOS_BOOTSTRAP_PROMPT_VERBOSE.md`
 
-- 已有码库补建 RCOS：
+- Existing codebase RCOS bootstrap:
   `EXISTING_CODEBASE_RCOS_BOOTSTRAP_PROMPT.md`
 
-- 新 conversation onboarding：
+- New conversation onboarding:
   `NEW_CONVERSATION_ONBOARDING_PROMPT.md`
 
-- 日常任务协作：
+- Daily task collaboration:
   `DAILY_ROUTINE_PROMPT.md`
 
-- RCOS 审计 / guard 失败修复：
+- RCOS audit / guard-failure repair:
   `SELF_HEAL_PROMPT.md`
 
-## 维护建议
+## Maintenance Notes
 
-如果你把这个仓库作为长期维护的 RCOS 资产仓库，建议保持以下习惯：
+If you maintain this repository over time, it helps to keep these habits:
 
-- 新增 prompt 时同步更新 `PROMPT_CATALOG.md`
-- 调整 bootstrap pack 结构时同步更新 `BOOTSTRAP_PACK_USAGE_NOTE.md`
-- 如果新增了新的 bootstrap 场景，同时补：
-  - 一个 prompt
-  - 一个 checklist
-  - 一段 usage note
-- 始终区分：
-  - 通用模板
-  - 当前项目 truth layer
-  - example seed
+- update `PROMPT_CATALOG.md` whenever new prompts are added
+- update `BOOTSTRAP_PACK_USAGE_NOTE.md` whenever the pack structure changes
+- when adding a new bootstrap scenario, try to add:
+  - one prompt
+  - one checklist
+  - one usage note
+- always keep the distinction clear between:
+  - reusable templates
+  - the active project truth layer
+  - example seeds
 
-这样可以避免 RCOS 资产逐渐堆积后变得难以使用。
+That separation keeps the RCOS asset repository reusable instead of gradually turning into project-specific clutter.
 
 ## License
 
-本仓库采用 MIT License。你可以在遵守许可证条款的前提下自由使用、修改、分发和复用这些模板、prompt、规则与 bootstrap 资产。
+This repository is released under the MIT License. You are free to use, modify, distribute, and integrate these templates, prompts, rules, and bootstrap assets under the terms of that license.
 
-完整许可证文本见根目录 [LICENSE](./LICENSE)。
+See [LICENSE](./LICENSE) for the full text.
