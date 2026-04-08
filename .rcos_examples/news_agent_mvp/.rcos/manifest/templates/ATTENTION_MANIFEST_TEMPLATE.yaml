@@ -1,0 +1,23 @@
+# Attention Manifest Template
+task: ""
+goal: ""
+
+read_first:
+  - manifest/project/module_index.yaml
+
+read_only:
+  - ""
+
+modify:
+  - ""
+
+do_not_touch:
+  - ""
+
+scope_expansion_policy:
+  allowed: false
+  conditions:
+    - "Only expand if current files are insufficient to preserve correctness."
+
+notes:
+  - ""

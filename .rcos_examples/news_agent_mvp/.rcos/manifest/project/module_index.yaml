@@ -1,0 +1,111 @@
+modules:
+  project_specific_docs:
+    path:
+      - manifest/project/PROJECT_BACKGROUND.md
+      - manifest/project/PROJECT_STATUS.md
+      - manifest/project/PROJECT_ASSUMPTIONS.md
+      - manifest/project/CODEBASE_MAP.md
+      - manifest/project/PROJECT_ONBOARDING_PROMPT.md
+      - manifest/project/PROJECT_COLLABORATION_PROMPT.md
+      - manifest/project/PROJECT_RCOS_MAINTENANCE.md
+      - manifest/project/CURRENT_BASELINE.md
+    purpose: project-specific RCOS context and operating prompts
+    authority: high
+
+  app_entrypoints:
+    path:
+      - agent_api.py
+      - app/main.py
+      - app/api/routes.py
+      - app/api/schemas.py
+    purpose: service bootstrapping, FastAPI surface, and request schema
+    authority: high
+
+  app_config_and_logging:
+    path:
+      - app/config/settings.py
+      - app/core/logging.py
+      - scripts/restart.sh
+    purpose: runtime configuration, logging, and local restart behavior
+    authority: high
+
+  app_orchestration:
+    path:
+      - app/services/agent.py
+      - app/services/planner.py
+      - app/services/query_generation.py
+      - app/services/retrieval_pipeline.py
+      - app/services/query_tasks.py
+      - app/services/fact_check_pipeline.py
+      - app/services/follow_up_pipeline.py
+    purpose: main workflow orchestration and planner-related logic
+    authority: high
+    notes:
+      - Current planner authority is still app/services/agent.py because run_agent() does not yet call planner.py.
+      - Query generation and retrieval pipeline are now part of the main orchestration surface consumed by run_agent().
+      - query_tasks.py owns the lightweight async task wrapper used by /chat waiting-state progress UI for ordinary query requests, fact-check requests, and follow-up requests.
+      - query_generation.py is responsible for search-friendly query variants consumed by retrieval_pipeline.py.
+      - fact_check_pipeline.py owns the dedicated fact-check orchestration flow and should not be folded into summarizer.py.
+      - follow_up_pipeline.py owns the dedicated one-shot follow-up flow and should not be folded into summarizer.py.
+
+  app_llm_and_tool_bridge:
+    path:
+      - app/services/llm.py
+      - app/services/mcp_client.py
+      - mcp_news_server.py
+      - hotlists.yaml
+    purpose: model calls, tool invocation bridge, RSS source configuration, and MCP-style tool implementation
+    authority: high
+
+  app_retrieval_processing:
+    path:
+      - app/services/retrieval_models.py
+      - app/services/retrieval_normalize.py
+      - app/services/retrieval_dedup.py
+      - app/services/retrieval_rerank.py
+      - app/services/fact_check_queries.py
+      - app/services/fact_check_analyzer.py
+      - app/services/follow_up_classifier.py
+      - app/services/follow_up_answerer.py
+    purpose: retrieval-layer data contracts, normalization, deduplication, and first-stage reranking
+    authority: high
+    notes:
+      - Recency scoring in retrieval_rerank.py must consume app/services/freshness.py rather than duplicating time-bucket logic.
+      - SearchQuery now includes search-friendly query metadata used for lightweight search fallback attempts.
+      - fact_check_queries.py and fact_check_analyzer.py own fact-check-specific query generation and credibility analysis outputs.
+      - follow_up_classifier.py and follow_up_answerer.py own follow-up-specific intent classification and question answering outputs.
+
+  app_scoring_and_summary:
+    path:
+      - app/services/freshness.py
+      - app/services/scoring.py
+      - app/services/enrichment.py
+      - app/services/summarizer.py
+    purpose: centralized freshness evaluation, relevance assembly, localization, and final summarization
+    authority: high
+
+  app_web:
+    path:
+      - app/web/chat_page.py
+      - app/web/log_page.py
+    purpose: browser UI rendering for chat and logs
+    authority: medium
+    notes:
+      - chat_page.py now owns the /chat-side loading spinner and step-progress UI for ordinary /query requests, fact-check requests, and follow-up requests.
+      - log_page.py owns log-browser-specific indexing and UI behavior, including today-hourly pickup, auto-refresh toggle, and line-level copy interactions.
+
+  rcos_templates:
+    path:
+      - manifest/templates/META_INSTRUCTIONS.md
+      - manifest/templates/RCOS_RUNBOOK.md
+      - manifest/templates/CHANGE_PLAN_PROMPT.md
+      - manifest/templates/PROJECT_SPECIFIC_RCOS_PROMPT_UNIT.md
+      - manifest/templates/PATCH_WORKFLOW.md
+      - manifest/templates/RCOS_UPDATE_PROTOCOL.md
+      - manifest/templates/coding_contract.md
+    purpose: reusable RCOS operating templates
+    authority: high
+
+notes:
+  - Prefer repository code over project docs when a concrete implementation detail conflicts, unless verifier artifacts later supersede both.
+  - If planner authority is migrated from app/services/agent.py to app/services/planner.py, update this file immediately.
