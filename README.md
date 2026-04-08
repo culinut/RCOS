@@ -1,6 +1,8 @@
 # RCOS Bootstrap Pack
 
-一个用于在新项目或既有代码仓库中快速引入 RCOS（Repository Context Operating System）的可复用资产仓库。
+RCOS（Repository Context Operating System）是一套面向人类与通用 AI 协作开发的仓库上下文操作系统。它的核心目标不是替代工程判断，而是用最小必要上下文、明确的 authority 边界和 plan-first workflow，持续降低 authority drift、intent loss、attention sprawl 和 verification gaps。
+
+一个用于在新项目或既有代码仓库中快速引入 RCOS 的可复用资产仓库。
 
 这个仓库的目标不是承载某个具体业务系统，而是提供一套可复制、可解压、可扩展的 RCOS 基础设施，包括：
 
@@ -14,6 +16,7 @@
 
 ## Table Of Contents
 
+- [RCOS 简介](#rcos-简介)
 - [仓库用途](#仓库用途)
 - [适用场景](#适用场景)
 - [主要内容](#主要内容)
@@ -25,6 +28,25 @@
 - [Bootstrap Pack 与 Example Seed](#bootstrap-pack-与-example-seed)
 - [Prompt 导航](#prompt-导航)
 - [维护建议](#维护建议)
+- [License](#license)
+
+## RCOS 简介
+
+RCOS 关注的不是“让 AI 多读代码”，而是“让 AI 在正确的边界内读足够少但足够关键的上下文”。
+
+它通常通过以下机制工作：
+
+- 先读取最小必要上下文，而不是默认扫描整个仓库
+- 用 project-specific context files 声明当前项目的事实、assumptions 和 module authority
+- 用 plan-before-code workflow 让 AI 先明确 scope、intent 和 change plan
+- 在代码变更后同步维护 RCOS 文档，避免代码与上下文层逐渐失配
+
+RCOS 适合这些场景：
+
+- 新项目 bootstrap
+- 既有代码库补建 project context
+- 新 conversation 接管已有项目
+- 多轮、多会话、多人协作中的上下文对齐与行为约束
 
 ## 仓库用途
 
@@ -217,3 +239,8 @@ AI 不应直接继承 example seed 中的：
 
 这样可以避免 RCOS 资产逐渐堆积后变得难以使用。
 
+## License
+
+本仓库采用 MIT License。你可以在遵守许可证条款的前提下自由使用、修改、分发和复用这些模板、prompt、规则与 bootstrap 资产。
+
+完整许可证文本见根目录 [LICENSE](./LICENSE)。
