@@ -222,15 +222,16 @@ Notes:
 
 ## Recommended Starting Points
 
-The two best entry points are:
+Recommended starting points include:
 
 - `.rcos/prompts/BOOTSTRAP_PACK_USAGE_NOTE.md`
 - `.rcos/prompts/PROMPT_CATALOG.md`
 - [Project Startup Guide](./RCOS_Project_Startup_Guide.md)
 - [Existing Codebase Adoption Guide](./RCOS_Existing_Codebase_Adoption_Guide.md)
+- [New Conversation Onboarding Guide](./RCOS_New_Conversation_Onboarding_Guide.md)
 - [Environment Setup Helper](./RCOS_Environment_Setup_Helper.md) (optional)
 
-The first explains how to unpack and use the bootstrap pack. The second helps you choose the right prompt for each situation. The project startup guide is for brand-new repositories. The existing codebase adoption guide is for bringing RCOS into a repository that already has code and history. The environment setup helper is optional and is meant for users who want extra step-by-step setup guidance before beginning the RCOS flow.
+The first explains how to unpack and use the bootstrap pack. The second helps you choose the right prompt for each situation. The project startup guide is for brand-new repositories. The existing codebase adoption guide is for bringing RCOS into a repository that already has code and history. The new conversation onboarding guide is for refreshing a clean coding-agent conversation after RCOS is already in place. The environment setup helper is optional and is meant for users who want extra step-by-step setup guidance before beginning the RCOS flow.
 
 ## Bootstrapping a New Project
 
@@ -273,10 +274,13 @@ The focus in this kind of session is not immediate feature work, but:
 If a project already has a complete `.rcos/manifest/project/*` layer and you only need a new conversation to take over, start with:
 
 - `.rcos/prompts/NEW_CONVERSATION_ONBOARDING_PROMPT.md`
+- [New Conversation Onboarding Guide](./RCOS_New_Conversation_Onboarding_Guide.md)
 
 For continued day-to-day work, pair it with:
 
 - `.rcos/prompts/DAILY_ROUTINE_PROMPT.md`
+
+The guide is especially useful when the previous conversation hit token limits, was compacted, or otherwise lost working context and you want the new coding agent to re-ground itself from the repository truth layer before continuing.
 
 ## Bootstrap Pack and Example Seed
 

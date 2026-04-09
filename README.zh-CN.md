@@ -220,15 +220,16 @@ rcos_bootstrap_pack_with_examples.zip
 
 ## 推荐使用方式
 
-推荐优先从这两个文件开始：
+推荐优先从这些入口开始：
 
 - `.rcos/prompts/BOOTSTRAP_PACK_USAGE_NOTE.md`
 - `.rcos/prompts/PROMPT_CATALOG.md`
 - [项目启动指南](./RCOS_Project_Startup_Guide.zh-CN.md)
 - [既有代码库引入指南](./RCOS_Existing_Codebase_Adoption_Guide.zh-CN.md)
+- [新对话 Onboarding 指南](./RCOS_New_Conversation_Onboarding_Guide.zh-CN.md)
 - [环境配置辅助指南](./RCOS_Environment_Setup_Helper.zh-CN.md)（可选）
 
-前者告诉你 bootstrap pack 该怎么解压和使用，后者告诉你不同场景该选哪个 prompt。项目启动指南面向全新的仓库，既有代码库引入指南面向已经有代码和历史上下文的仓库。环境配置辅助指南则是按需查看的可选材料，适合想在进入正式 RCOS 流程前先获得更多环境配置帮助的读者。
+前者告诉你 bootstrap pack 该怎么解压和使用，后者告诉你不同场景该选哪个 prompt。项目启动指南面向全新的仓库，既有代码库引入指南面向已经有代码和历史上下文的仓库，新对话 Onboarding 指南面向已经完成 RCOS bootstrap、但需要在新 conversation 中快速刷新上下文的场景。环境配置辅助指南则是按需查看的可选材料，适合想在进入正式 RCOS 流程前先获得更多环境配置帮助的读者。
 
 ## 新项目初始化
 
@@ -271,10 +272,13 @@ rcos_bootstrap_pack_with_examples.zip
 如果项目已经有完整的 `.rcos/manifest/project/*`，而你只是要在新 conversation 中快速接管它，优先使用：
 
 - `.rcos/prompts/NEW_CONVERSATION_ONBOARDING_PROMPT.md`
+- [新对话 Onboarding 指南](./RCOS_New_Conversation_Onboarding_Guide.zh-CN.md)
 
 如果还要继续日常开发，则可以配合：
 
 - `.rcos/prompts/DAILY_ROUTINE_PROMPT.md`
+
+这份指南尤其适合：上一个 conversation 到了 token 上限、被 compact，或者你希望让新的 coding agent 先从仓库真相层重新锚定上下文，再继续后续工作。
 
 ## Bootstrap Pack 与 Example Seed
 
