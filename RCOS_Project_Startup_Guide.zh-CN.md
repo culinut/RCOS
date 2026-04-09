@@ -1,21 +1,21 @@
-# RCOS 项目启动指南
+# RCOS 新项目导引
 
-English version: [RCOS_Project_Startup_Guide.md](./RCOS_Project_Startup_Guide.md)
+英文版：[RCOS_Project_Startup_Guide.md](./RCOS_Project_Startup_Guide.md)
 
-这份指南说明：如果你想用 RCOS 启动一个全新的项目，推荐的准备顺序、协作分工和启动提示词应该怎么组织。
+这份指南说明：如果你想把 RCOS 引入一个全新的项目，推荐的准备顺序、协作分工和引导提示词应该怎么组织。
 
 它以一组常见工具组合作为示例：
 
 - 你先用 ChatGPT 或类似对话模型把项目想法聊清楚
-- 再把高质量 bootstrap prompt 交给 Codex 或 Cursor 中的 coding agent
-- 最后让 Codex 按 RCOS 流程完成新项目 bootstrap
+- 再把高质量的引导提示词交给 Codex 或 Cursor 中的编程agent
+- 最后让 Codex 按 RCOS 流程完成新项目初始化
 
 这只是示例组合，不是强制要求。你完全可以替换为其他：
 
 - IDE / 编辑器
 - 操作系统或终端环境
 - 对话模型
-- coding agent
+- 编程agent
 
 只要整体流程仍然符合 RCOS 的上下文、规划和审批纪律即可。
 
@@ -24,14 +24,14 @@ English version: [RCOS_Project_Startup_Guide.md](./RCOS_Project_Startup_Guide.md
 - [1. 先准备环境](#1-先准备环境)
 - [2. 先把本体 RCOS 拉到本地工作目录](#2-先把本体-rcos-拉到本地工作目录)
 - [3. 创建新的项目目录并初始化 git](#3-创建新的项目目录并初始化-git)
-- [4. 从 pulled repo 直接解压 bootstrap pack](#4-从-pulled-repo-直接解压-bootstrap-pack)
+- [4. 直接从已拉取的仓库中解压 RCOS 套装](#4-直接从已拉取的仓库中解压-rcos-套装)
 - [5. 在你的开发环境中打开新项目](#5-在你的开发环境中打开新项目)
 - [6. 先用对话模型把项目想法聊清楚](#6-先用对话模型把项目想法聊清楚)
 - [7. 把附录中的元提示词贴给对话模型](#7-把附录中的元提示词贴给对话模型)
-- [8. 把生成的 bootstrap prompt 交给 coding agent](#8-把生成的-bootstrap-prompt-交给-coding-agent)
-- [9. Codex 在 bootstrap 中的目标](#9-codex-在-bootstrap-中的目标)
-- [10. 后续 conversation 优先复用 onboarding prompt](#10-后续-conversation-优先复用-onboarding-prompt)
-- [11. 对话模型与 coding agent 的推荐分工](#11-对话模型与-coding-agent-的推荐分工)
+- [8. 把生成的引导提示词交给编程agent](#8-把生成的引导提示词交给编程agent)
+- [9. Codex 在初始化阶段中的目标](#9-codex-在初始化阶段中的目标)
+- [10. 后续对话优先复用接管提示词](#10-后续对话优先复用接管提示词)
+- [11. 对话模型与编程agent的推荐分工](#11-对话模型与编程agent的推荐分工)
 - [附录：可直接复制给对话模型的元提示词](#附录可直接复制给对话模型的元提示词)
 
 ## 1. 先准备环境
@@ -39,17 +39,17 @@ English version: [RCOS_Project_Startup_Guide.md](./RCOS_Project_Startup_Guide.md
 建议先确认这些基础条件已经就绪：
 
 - 已安装 Cursor
-- 已安装并登录你要使用的 Codex / OpenAI 编码插件或集成能力
-- 你可以在 Cursor 中正常发起新的 AI coding conversation
+- 已安装并登录你要使用的 Codex / OpenAI 编码插件或集成功能
+- 你可以在 Cursor 中正常发起新的 AI 编码对话
 
 ### 可选步骤：先单独完成环境配置
 
-如果你对环境配置还不熟，或者希望在进入 RCOS 项目启动流程之前先把基础环境一步步准备好，可以先单独完成环境配置。
+如果你对环境配置还不熟，或者希望在进入 RCOS 新项目导引流程之前先把基础环境一步步准备好，可以先单独完成环境配置。
 
 适合这种情况的读者：
 
 - 刚开始接触 WSL、Ubuntu 或 Python 开发环境
-- 不熟悉 git repo、Cursor、或 coding agent 插件配置
+- 不熟悉 git 仓库、Cursor、或编程agent插件配置
 - 希望先把环境问题拆开，不和项目设计讨论混在一起
 
 请按需查看这份单独文档：
@@ -58,9 +58,9 @@ English version: [RCOS_Project_Startup_Guide.md](./RCOS_Project_Startup_Guide.md
 
 那份文档里包含：
 
-- 一个可直接复制给对话模型的环境配置 prompt
-- Windows / WSL / Cursor / coding agent 的前置准备建议
-- 如何在完成环境准备后回到正式的 RCOS 项目启动流程
+- 一个可直接复制给对话模型的环境配置提示词
+- Windows / WSL / Cursor / 编程agent的前置准备建议
+- 如何在完成环境准备后回到正式的 RCOS 新项目导引流程
 
 ## 2. 先把本体 RCOS 拉到本地工作目录
 
@@ -77,7 +77,7 @@ English version: [RCOS_Project_Startup_Guide.md](./RCOS_Project_Startup_Guide.md
     cd ~/Workspace/RCOS
     git pull
 
-这样可以确保你拿到的是本体 RCOS 的最新模板、prompt、example seed 和 bootstrap artifact。
+这样可以确保你拿到的是本体 RCOS 的最新模板、提示词、示例种子和配套压缩包。
 
 ## 3. 创建新的项目目录并初始化 git
 
@@ -89,9 +89,9 @@ English version: [RCOS_Project_Startup_Guide.md](./RCOS_Project_Startup_Guide.md
 
 你也可以顺手做一个最小初始提交，但不是必须。
 
-## 4. 从 pulled repo 直接解压 bootstrap pack
+## 4. 直接从已拉取的仓库中解压 RCOS 套装
 
-推荐直接从本体 RCOS 仓库里把 bootstrap pack 解压到新项目目录：
+推荐直接从本体 RCOS 仓库里把 RCOS 套装解压到新项目目录：
 
     cd ~/Workspace/<your-project>
     unzip ~/Workspace/RCOS/rcos_bootstrap_pack_with_examples.zip
@@ -104,7 +104,7 @@ English version: [RCOS_Project_Startup_Guide.md](./RCOS_Project_Startup_Guide.md
 
 注意：
 
-- .rcos_examples/ 里的内容只是 example seed
+- .rcos_examples/ 里的内容只是示例种子
 - 它们只能提供结构和写法参考
 - 不能被当成当前项目事实来源
 
@@ -114,7 +114,7 @@ English version: [RCOS_Project_Startup_Guide.md](./RCOS_Project_Startup_Guide.md
 
 ## 6. 先用对话模型把项目想法聊清楚
 
-在真正让 coding agent 写代码之前，不要急着直接让它开始 scaffold。
+在真正让编程agent写代码之前，不要急着直接让它开始搭骨架。
 
 更稳的做法是先在对话模型里把项目 idea 尽量聊清楚，尤其是这些问题：
 
@@ -123,7 +123,7 @@ English version: [RCOS_Project_Startup_Guide.md](./RCOS_Project_Startup_Guide.md
 - 第一阶段最小可交付范围是什么
 - 明确不做什么
 - 有哪些技术方向或约束
-- 哪些内容目前还只是工作假设
+- 哪些内容目前还只是临时假设
 
 ## 7. 把附录中的元提示词贴给对话模型
 
@@ -133,44 +133,44 @@ English version: [RCOS_Project_Startup_Guide.md](./RCOS_Project_Startup_Guide.md
 
 - 帮你澄清项目
 - 帮你收敛高层规划
-- 最后生成一份结合你的项目想法、可直接贴给 Codex 的 RCOS new project bootstrap prompt
+- 最后生成一份结合你的项目想法、可直接贴给 Codex 的 RCOS 新项目引导提示词
 
-## 8. 把生成的 bootstrap prompt 交给 coding agent
+## 8. 把生成的引导提示词交给编程agent
 
-当对话模型产出最终 prompt 后：
+当对话模型产出最终提示词后：
 
-- 在你的 coding agent 环境里新开一个新 conversation
-- 把生成的那份 prompt 原样贴进去
-- 让 agent 按 RCOS 方式开始新项目 bootstrap
+- 在你的编程agent环境里新开一个对话
+- 把生成的那份提示词原样贴进去
+- 让agent按 RCOS 方式开始新项目引入
 
-## 9. Codex 在 bootstrap 中的目标
+## 9. Codex 在初始化阶段中的目标
 
-一个好的 RCOS new-project bootstrap，通常应让 Codex：
+一个好的 RCOS 新项目初始化过程，通常应让 Codex：
 
-- 先做 high-level planning
-- 明确 scope、assumptions 和 open questions
+- 先做高层规划
+- 明确范围、假设和待确认问题
 - 建立初始代码结构
-- 生成 .rcos/manifest/project/* 的初始 project-specific context files
+- 生成 .rcos/manifest/project/* 中初始的项目级上下文文件
 - 必要时补充 .cursor/rules/*
-- 在 non-trivial 工作中遵守先 plan、等确认、再实施
-- 把 PROJECT_ROADMAP.md 视为正式 project-specific RCOS 文件
+- 在非简单工作中遵守先规划、等确认、再实施
+- 把 PROJECT_ROADMAP.md 视为正式的项目级 RCOS 文件
 - 如果项目使用 RCOS DNA 机制，则同时建立 PROJECT_RCOS_EVOLUTION.md
 
-## 10. 后续 conversation 优先复用 onboarding prompt
+## 10. 后续对话优先复用接管提示词
 
-当项目已经建立起 RCOS project context 后，后续再开新的 Codex conversation 时，优先使用项目内已有的 onboarding prompt，而不是每次重新从头解释项目。
+当项目已经建立起 RCOS 项目上下文后，后续再开新的 Codex 对话时，优先使用项目内已有的接管提示词，而不是每次重新从头解释项目。
 
-在实践中，一个简短但准确的 onboarding prompt，通常就足以让 Codex 重新扫描项目 context，并快速恢复到接近相同的上下文掌握水平。
+在实践中，一个简短但准确的接管提示词，通常就足以让 Codex 重新扫描项目上下文，并快速恢复到接近相同的掌握程度。
 
-## 11. 对话模型与 coding agent 的推荐分工
+## 11. 对话模型与编程agent的推荐分工
 
 一个很稳的分工方式是：
 
 - 对话模型负责把想法聊清楚
-- coding agent 负责按 RCOS 流程落地 bootstrap
+- 编程agent负责按 RCOS 流程落地初始化工作
 - RCOS 文档与代码应一起建立，而不是事后补写
-- example seed 只提供结构参考，不提供当前项目事实
-- 如果项目启用了 RCOS DNA 机制，要区分 core RCOS、example seed 和 artifact 的不同演化节奏
+- 示例种子只提供结构参考，不提供当前项目事实
+- 如果项目启用了 RCOS DNA 机制，要区分核心 RCOS、示例种子和发布产物的不同演化节奏
 
 ---
 
@@ -243,8 +243,8 @@ English version: [RCOS_Project_Startup_Guide.md](./RCOS_Project_Startup_Guide.md
 
     这份给 coding agent 的 prompt 必须：
 
-    1. 明确说明这是一个 RCOS-controlled new-project bootstrap task
-    2. 把我们刚才澄清过的项目 idea、目标、范围、约束、假设和开放问题整合进去
+    1. 明确说明这是一个受 RCOS 管理的新项目启动任务
+    2. 把我们刚才澄清过的项目想法、目标、范围、约束、假设和开放问题整合进去
     3. 明确要求 coding agent 在开始任何 planning、scaffold 或 project-specific RCOS generation 之前，先定位并读取以下 RCOS 文件（如果存在）：
 
        - .cursor/rules/rcos_enforced.md
