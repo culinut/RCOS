@@ -127,6 +127,7 @@ Always provide:
 - `manifest/project/CODEBASE_MAP.md`
 - `manifest/project/PROJECT_STATUS.md`
 - `manifest/project/PROJECT_ROADMAP.md`
+- `manifest/project/PROJECT_RCOS_EVOLUTION.md` (if it exists)
 - `manifest/project/PROJECT_ASSUMPTIONS.md`
 - `manifest/project/module_index.yaml`
 
@@ -169,6 +170,7 @@ They should include:
 - `PROJECT_COLLABORATION_PROMPT.md`
 - `PROJECT_RCOS_MAINTENANCE.md`
 - `PROJECT_ROADMAP.md`
+- `PROJECT_RCOS_EVOLUTION.md`
 
 These files are part of the operating system, not optional notes.
 
@@ -204,6 +206,24 @@ When that happens:
 5. do not write contributor-project evolution into an unrelated example seed
 6. propose syncing it back to the main RCOS repository
 7. wait for human confirmation before updating templates, prompts, or example seeds
+
+---
+
+# DNA Cadence
+
+When a repository uses the RCOS DNA system:
+
+- core RCOS updates may happen first
+- example seed updates should be delayed and promoted intentionally
+- artifact rebuilds should happen on release-worthy changes
+
+Default rule:
+
+- do not update example seeds and artifacts together during routine maintenance
+
+Allowed exception:
+
+- one explicit human-approved out-of-band release may update both together
 
 ---
 

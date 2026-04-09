@@ -64,6 +64,7 @@ manifest/project/
   PROJECT_COLLABORATION_PROMPT.md
   PROJECT_RCOS_MAINTENANCE.md
   PROJECT_ROADMAP.md
+  PROJECT_RCOS_EVOLUTION.md
 ```
 
 ## Bootstrap Prompt (copyable)
@@ -87,6 +88,7 @@ Required files:
 - PROJECT_COLLABORATION_PROMPT.md
 - PROJECT_RCOS_MAINTENANCE.md
 - PROJECT_ROADMAP.md
+- PROJECT_RCOS_EVOLUTION.md
 
 Use all and only the materials I provide:
 - project descriptions
@@ -151,6 +153,11 @@ File requirements:
 - define milestone-level deliverables and acceptance checks
 - define the current recommended path from baseline to next phase
 
+9. PROJECT_RCOS_EVOLUTION.md
+- define the tenant's current DNA protocol version
+- define the tenant's current core DNA base
+- define local candidate DNA and pending downstream intake if applicable
+
 Referencing the attached zip, please review and follow all rules in every file in rcos/manifest/templates, and following the instructions/examples in every file in rcos/manifest/project, populate true details to your fullest knowledge and belief, generate all the populated project-specific RCOS files. Finally, gather all the generated files in a downloadable zip.
 （我这里写了英文便于你理解，请还是用中文交流和生成）
 ```
@@ -194,6 +201,7 @@ Phase 3:
   - PROJECT_COLLABORATION_PROMPT.md
   - PROJECT_RCOS_MAINTENANCE.md
   - PROJECT_ROADMAP.md
+  - PROJECT_RCOS_EVOLUTION.md
   - CURRENT_BASELINE.md
   - module_index.yaml
 
@@ -254,6 +262,7 @@ manifest/project/
   PROJECT_COLLABORATION_PROMPT.md
   PROJECT_RCOS_MAINTENANCE.md
   PROJECT_ROADMAP.md
+  PROJECT_RCOS_EVOLUTION.md
   CURRENT_BASELINE.md
   module_index.yaml
 
@@ -299,9 +308,10 @@ Context source priority:
 3. manifest/project/PROJECT_BACKGROUND.md
 4. manifest/project/PROJECT_STATUS.md
 5. manifest/project/PROJECT_ROADMAP.md
-6. manifest/project/PROJECT_ASSUMPTIONS.md
-7. manifest/project/module_index.yaml
-8. current task files
+6. manifest/project/PROJECT_RCOS_EVOLUTION.md (if it exists)
+7. manifest/project/PROJECT_ASSUMPTIONS.md
+8. manifest/project/module_index.yaml
+9. current task files
 
 Execution rules:
 1. Start with:
@@ -348,6 +358,7 @@ Read and follow:
 - manifest/project/CODEBASE_MAP.md
 - manifest/project/PROJECT_STATUS.md
 - manifest/project/PROJECT_ROADMAP.md
+- manifest/project/PROJECT_RCOS_EVOLUTION.md (if it exists)
 - manifest/project/PROJECT_ASSUMPTIONS.md
 - manifest/project/module_index.yaml
 

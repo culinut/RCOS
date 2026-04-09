@@ -22,6 +22,12 @@ It is not meant to host one specific product. Instead, it provides reusable RCOS
 - a bootstrap pack that can be extracted directly into a new repository
 - an example seed project for structure and writing reference
 
+RCOS now also supports a DNA-oriented evolution model:
+
+- tenant projects may produce reusable RCOS DNA
+- the core RCOS layer, example seeds, and artifacts evolve on different cadences
+- upstream sync and downstream intake should be explicit rather than automatic
+
 ## Table Of Contents
 
 - [What It Feels Like](#what-it-feels-like)
@@ -299,6 +305,8 @@ Example seeds may also demonstrate:
 - roadmap planning and tracking as a first-class project-specific RCOS artifact
 - how a contributor project can surface reusable RCOS improvements for possible upstream sync
 
+But example seeds are still delayed-promotion samples, not the high-frequency DNA layer.
+
 ## Prompt Navigation
 
 If you are not sure which prompt to use, start with:
@@ -342,6 +350,9 @@ If you maintain this repository over time, it helps to keep these habits:
   - do not write contributor-project evolution into an unrelated example seed
   - sync templates, prompts, and example seed together when appropriate
   - do not upstream-sync it silently without human confirmation
+- do not rebuild the bootstrap zip for every DNA change
+- treat the bootstrap zip as a release artifact
+- only make a same-step seed + artifact update when a human-approved exception release explicitly calls for it
 - when a new project-specific file becomes durably useful, update:
   - templates
   - prompts

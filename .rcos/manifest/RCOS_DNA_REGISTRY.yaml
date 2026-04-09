@@ -1,0 +1,95 @@
+protocol_version: rcos-evolution-v1
+registry_updated_at: 2026-04-09
+
+core_release:
+  id: core-dna-bootstrap-2026-04-09
+  notes: >
+    First release-oriented core DNA snapshot after formalizing roadmap tracking,
+    contributor-tagged upstream sync, contributor-seed matching, and cadence
+    separation between core DNA, example seeds, and artifacts.
+
+artifact_release_policy:
+  default: release_only
+  notes: >
+    The bootstrap zip should be rebuilt only on release-worthy changes.
+
+seed_release_policy:
+  default: delayed_promotion
+  notes: >
+    Example seeds are successful delayed-promotion samples rather than
+    real-time mirrors of tenant RCOS evolution.
+
+dna_items:
+  - id: DNA-2026-0001
+    title: project-roadmap-first-class-file
+    status: promoted_upstream
+    contributor_projects:
+      - SanXing-AsItIs
+    affected_layers:
+      - core
+      - seed
+    seed_sync_policy: delayed
+    artifact_impact: no_immediate_artifact_change
+    requires: []
+    supersedes: []
+    notes: >
+      `PROJECT_ROADMAP.md` is now treated as a formal project-specific RCOS file.
+
+  - id: DNA-2026-0002
+    title: contributor-tagged-upstream-sync
+    status: promoted_upstream
+    contributor_projects:
+      - SanXing-AsItIs
+    affected_layers:
+      - core
+    seed_sync_policy: delayed
+    artifact_impact: no_immediate_artifact_change
+    requires: []
+    supersedes: []
+    notes: >
+      Tenant projects should first stabilize RCOS improvements locally, then tag
+      the contributor project before proposing upstream sync.
+
+  - id: DNA-2026-0003
+    title: contributor-seed-matching
+    status: promoted_upstream
+    contributor_projects:
+      - SanXing-AsItIs
+    affected_layers:
+      - core
+      - seed
+    seed_sync_policy: delayed
+    artifact_impact: no_immediate_artifact_change
+    requires:
+      - DNA-2026-0002
+    supersedes: []
+    notes: >
+      Example seed sync must preferentially target the seed path that matches the
+      contributor project, not an unrelated seed.
+
+  - id: DNA-2026-0004
+    title: decoupled-core-seed-artifact-cadence
+    status: promoted_upstream
+    contributor_projects:
+      - SanXing-AsItIs
+    affected_layers:
+      - core
+      - seed
+      - artifact
+    seed_sync_policy: delayed
+    artifact_impact: release_worthy
+    requires:
+      - DNA-2026-0002
+      - DNA-2026-0003
+    supersedes: []
+    notes: >
+      Core RCOS DNA, example seeds, and artifacts must evolve on different
+      cadences to reduce sync storms.
+
+exception_releases:
+  - id: EX-2026-0001
+    title: dna-system-bootstrap
+    approved: true
+    reason: >
+      One-time out-of-band synchronization of the new DNA system into the core
+      RCOS layer, matching example seed, and bootstrap artifact.

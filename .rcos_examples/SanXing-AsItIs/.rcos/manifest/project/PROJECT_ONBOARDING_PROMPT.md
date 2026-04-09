@@ -25,6 +25,7 @@
 - `.rcos/manifest/project/CODEBASE_MAP.md`
 - `.rcos/manifest/project/CURRENT_BASELINE.md`
 - `.rcos/manifest/project/PROJECT_ROADMAP.md`
+- `.rcos/manifest/project/PROJECT_RCOS_EVOLUTION.md`
 - `.rcos/manifest/project/module_index.yaml`
 
 如果任务与评分语义相关，还必须读：
@@ -86,4 +87,18 @@
 1. 先在当前项目内把该改进沉淀为本地已确认实践；
 2. 将 contributor project 标记为 `SanXing-AsItIs`；
 3. 明确说明它是否值得同步回主 RCOS 仓库；
-4. 在得到人类明确确认前，不要直接修改上游 RCOS 仓库。
+4. 如果同步到主 RCOS 的 example seed，应优先落到与 contributor project 对应的 seed 路径，而不是修改无关 seed；
+5. 在得到人类明确确认前，不要直接修改上游 RCOS 仓库。
+
+## 关于 DNA 状态
+
+如果项目存在：
+
+- `PROJECT_RCOS_EVOLUTION.md`
+
+则新 conversation 应额外确认：
+
+- 当前 tenant 正在遵守哪个 DNA 协议版本
+- 当前 tenant 基于哪个本体 DNA 基线
+- 当前有哪些本地候选 DNA
+- 当前是否存在待下行吸收的本体 DNA

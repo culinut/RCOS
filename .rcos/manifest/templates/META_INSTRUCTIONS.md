@@ -160,3 +160,24 @@ Therefore:
 - do not rely on hidden assumptions
 - do not assume the AI has scanned the repo unless provided evidence
 - always anchor to manifest files first
+
+---
+
+## RCOS DNA Rule
+
+If the repository uses RCOS DNA tracking artifacts such as:
+
+- `manifest/RCOS_DNA_REGISTRY.yaml`
+- `manifest/templates/RCOS_EVOLUTION_PROTOCOL.md`
+- `manifest/project/PROJECT_RCOS_EVOLUTION.md`
+
+then treat them as part of the collaboration truth layer.
+
+In particular:
+
+- do not assume core DNA, example seeds, and artifacts must update together
+- distinguish:
+  - promoted core DNA
+  - delayed seed promotion
+  - release-level artifact updates
+- if a tenant project has local RCOS innovations, summarize them locally before proposing upstream promotion

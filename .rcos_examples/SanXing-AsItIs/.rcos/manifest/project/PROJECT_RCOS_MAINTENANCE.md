@@ -68,6 +68,17 @@
 - 关键未决策项得到结论
 - 新阻塞点改变推进路径
 
+### `PROJECT_RCOS_EVOLUTION.md`
+
+在以下情况下更新：
+
+- tenant_protocol_version 变化
+- tenant_core_dna_base_release 变化
+- 新的 local candidate DNA 出现
+- 某个 candidate 被上行 promotion
+- 某个本体 DNA 被下行 intake 或暂缓 intake
+- seed / artifact 节奏规则发生变化
+
 ### `module_index.yaml`
 
 在以下情况下更新：
@@ -132,6 +143,10 @@
 执行约束：
 
 - 该类候选改进应标记 contributor project：`SanXing-AsItIs`
+- 若同步到主 RCOS 的 example seed，应优先更新与 contributor project 对应的 seed 路径
+- 不要把当前项目的 RCOS 进化误落到其他项目的 example seed
+- 默认优先同步到本体主 `.rcos`
+- 不要默认同时更新 example seed 与 zip artifact
 - 在得到人类明确确认前，不要直接修改上游 RCOS 仓库
 - 一旦确认同步，应同时检查：
   - 本项目 RCOS 文件

@@ -1,0 +1,34 @@
+protocol_version: rcos-evolution-v1
+registry_updated_at: YYYY-MM-DD
+
+core_release:
+  id: core-dna-YYYY-MM-DD
+  notes: >
+    Release-oriented identifier for the currently promoted core DNA set.
+
+artifact_release_policy:
+  default: release_only
+  notes: >
+    Artifacts should update more slowly than the core DNA layer.
+
+seed_release_policy:
+  default: delayed_promotion
+  notes: >
+    Example seeds are delayed-promotion samples, not high-frequency sync targets.
+
+dna_items:
+  - id: DNA-YYYY-NNNN
+    title: short-kebab-case-title
+    status: promoted_upstream
+    contributor_projects:
+      - example-project
+    affected_layers:
+      - core
+      - seed
+      - artifact
+    seed_sync_policy: delayed
+    artifact_impact: release_worthy | no_immediate_artifact_change
+    requires: []
+    supersedes: []
+    notes: >
+      Short explanation of what this DNA item changes and how it should spread.

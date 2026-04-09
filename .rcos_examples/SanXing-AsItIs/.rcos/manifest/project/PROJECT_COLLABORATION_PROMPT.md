@@ -39,6 +39,11 @@
 - 但由于《三省书》PDF 是扫描件，且本机缺少 OCR / PDF 文本提取工具
 - seed 中的具体措辞不能默认视为全部已由原文逐字复核
 
+如果存在 `PROJECT_RCOS_EVOLUTION.md`，还应额外区分：
+
+4. 当前 tenant 已吸收的本体 DNA
+5. 当前 tenant 尚未 promotion / 尚未 intake 的 DNA
+
 ## 范围约束
 
 默认目标是：
@@ -79,5 +84,17 @@
 1. 在当前项目内先落盘并验证；
 2. 将该经验总结为候选 RCOS 进化项；
 3. 为该候选项标记 contributor project：`SanXing-AsItIs`；
-4. 提议是否同步回主 RCOS 仓库；
-5. 在人类明确确认前，不要直接修改上游 RCOS 仓库。
+4. 若要同步到主 RCOS 的 example seed，优先同步到与 contributor project 对应的 seed 路径；
+5. 不要把来自当前项目的 RCOS 进化误写进无关 example seed；
+6. 默认优先同步到本体主 `.rcos`，而不是立即同步 seed 或 zip artifact；
+7. 提议是否同步回主 RCOS 仓库；
+8. 在人类明确确认前，不要直接修改上游 RCOS 仓库。
+
+## DNA 节奏约束
+
+若存在 `PROJECT_RCOS_EVOLUTION.md`，则默认遵守：
+
+- 主 DNA 层可先演化
+- example seed 是延迟 promotion 层
+- zip artifact 是发布层
+- 除非明确进入例外发布，不要同时更新 seed 与 zip artifact

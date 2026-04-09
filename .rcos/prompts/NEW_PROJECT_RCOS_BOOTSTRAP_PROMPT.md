@@ -21,6 +21,7 @@
    - `.rcos/manifest/project/PROJECT_COLLABORATION_PROMPT.md`
    - `.rcos/manifest/project/PROJECT_RCOS_MAINTENANCE.md`
    - `.rcos/manifest/project/PROJECT_ROADMAP.md`
+   - `.rcos/manifest/project/PROJECT_RCOS_EVOLUTION.md`
    - `.rcos/manifest/project/CURRENT_BASELINE.md`
    - `.rcos/manifest/project/module_index.yaml`
 

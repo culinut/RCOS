@@ -19,6 +19,7 @@
    - `.cursor/`
 3. 把 example seed 保留在非权威目录中，例如：
    - `.rcos_examples/news_agent_mvp/`
+   - `.rcos_examples/SanXing-AsItIs/`
 4. 在新的 AI conversation 中：
    - 优先使用 `.rcos/prompts/NEW_PROJECT_RCOS_BOOTSTRAP_PROMPT.md`
    - 复杂项目使用 `.rcos/prompts/NEW_PROJECT_RCOS_BOOTSTRAP_PROMPT_VERBOSE.md`
@@ -128,6 +129,24 @@ AI 不应直接继承其中的：
   - 优先把它同步到与 contributor project 对应的 example seed
   - 不要把该进化误写进无关 example seed
   - 仍然要保持 example seed 与活跃 truth layer 的边界
+
+关于 seed 与 zip artifact 的发布节奏：
+
+- 默认不要求 example seed 与 `rcos_bootstrap_pack_with_examples.zip` 同步更新
+- example seed 属于延迟 promotion 层
+- zip artifact 属于 release artifact 层
+- 只有在：
+  - seed promotion
+  - release-worthy 的主 RCOS 变化
+  - 或人类明确批准的例外发布
+  时，才应重打包 zip
+
+例外规则：
+
+- 在 RCOS DNA system 初次落盘时，允许一次计划外同步，同时更新：
+  - 主 RCOS DNA
+  - 对应 example seed
+  - zip artifact
 
 ---
 
