@@ -224,8 +224,10 @@ rcos_bootstrap_pack_with_examples.zip
 
 - `.rcos/prompts/BOOTSTRAP_PACK_USAGE_NOTE.md`
 - `.rcos/prompts/PROMPT_CATALOG.md`
+- [项目启动指南](./RCOS_Project_Startup_Guide.zh-CN.md)
+- [环境配置辅助指南](./RCOS_Environment_Setup_Helper.zh-CN.md)（可选）
 
-前者告诉你 bootstrap pack 该怎么解压和使用，后者告诉你不同场景该选哪个 prompt。
+前者告诉你 bootstrap pack 该怎么解压和使用，后者告诉你不同场景该选哪个 prompt。新增的启动指南则补充了一个更完整的人类工作流，说明怎样配合对话模型与 coding agent 来启动一个全新的 RCOS 项目。环境配置辅助指南则是按需查看的可选材料，适合想在进入正式 RCOS 流程前先获得更多环境配置帮助的读者。
 
 ## 新项目初始化
 

@@ -226,8 +226,10 @@ The two best entry points are:
 
 - `.rcos/prompts/BOOTSTRAP_PACK_USAGE_NOTE.md`
 - `.rcos/prompts/PROMPT_CATALOG.md`
+- [Project Startup Guide](./RCOS_Project_Startup_Guide.md)
+- [Environment Setup Helper](./RCOS_Environment_Setup_Helper.md) (optional)
 
-The first explains how to unpack and use the bootstrap pack. The second helps you choose the right prompt for each situation.
+The first explains how to unpack and use the bootstrap pack. The second helps you choose the right prompt for each situation. The startup guide explains a fuller human workflow for pairing a conversational model with a coding agent when starting a brand-new RCOS project. The environment setup helper is optional and is meant for users who want extra step-by-step setup guidance before beginning the RCOS flow.
 
 ## Bootstrapping a New Project
 
