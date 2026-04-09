@@ -161,17 +161,17 @@ English version: [RCOS_Project_Startup_Guide.md](./RCOS_Project_Startup_Guide.md
 
 ## 附录：可直接复制给对话模型的元提示词
 
-    你现在的任务不是直接写代码，而是先帮我把一个新项目想法聊清楚，然后基于 RCOS（Repository Context Operating System）方法，为 Codex 生成一份可以直接执行的新项目 bootstrap prompt。
+    你的任务不是直接写代码，而是先帮我把一个新项目想法聊清楚，然后基于 RCOS（Repository Context Operating System）方法，生成一份可以直接贴给 coding agent 的完整 bootstrap prompt。
 
     先给你必要背景：
 
-    RCOS 是一套面向人类与通用 AI 协作开发的仓库上下文操作系统。它的目标不是让 AI 读取更多代码，而是让 AI 读取正确且最小必要的上下文，并通过显式的项目上下文文件、职责边界、先规划后实施的流程，降低职责漂移、意图丢失、注意力扩散和验证缺口。
+    RCOS 是一套面向人类与通用 AI 协作开发的仓库上下文操作系统。它的目标不是让 AI 读取更多代码，而是让 AI 读取正确且最小必要的上下文。它通过显式的项目上下文文件、声明清楚的职责边界、最小注意力扫描，以及先规划后实施的工作流，来降低职责漂移、意图丢失、注意力扩散和验证缺口。
 
-    RCOS 的一些关键特征：
-    - 上下文不是只给 AI 读取的，很多上下文也可以由 AI 主动生成和持续维护
-    - 项目上下文会沉淀在 .rcos/manifest/project/*
-    - 通用模板和规则通常在 .rcos/manifest/templates/*
-    - 常用 prompt 在 .rcos/prompts/*
+    在 RCOS 里：
+    - project-specific context 通常沉淀在 .rcos/manifest/project/*
+    - 可复用模板和系统规则通常在 .rcos/manifest/templates/*
+    - 常用 prompt 通常在 .rcos/prompts/*
+    - .rcos_examples/ 下的 example seed 只是参考材料，不是当前项目事实
     - 非 trivial 工作通常遵守：
       - Scope Check
       - Context Summary
@@ -179,22 +179,25 @@ English version: [RCOS_Project_Startup_Guide.md](./RCOS_Project_Startup_Guide.md
       - Change Plan
       - 等人确认
       - 再实施
-    - PROJECT_ROADMAP.md 应被视为正式 project-specific RCOS 文件
-    - 如果项目启用了 RCOS DNA 机制，则 PROJECT_RCOS_EVOLUTION.md、RCOS_EVOLUTION_PROTOCOL.md、RCOS_DNA_REGISTRY.yaml 也属于协作真相层的一部分
+
+    额外的当前 RCOS 约束：
+    - PROJECT_ROADMAP.md 应被视为正式的 project-specific RCOS 文件
+    - 如果项目启用了 RCOS DNA 机制，则 PROJECT_RCOS_EVOLUTION.md、RCOS_EVOLUTION_PROTOCOL.md、RCOS_DNA_REGISTRY.yaml 也属于协作真相层
     - example seed 是延迟 promotion 的成功样本，不是当前项目事实，也不是高频同步层
-    - zip artifact 属于 release artifact 层，不应与 example seed 进行默认同步更新
+    - zip artifact 属于 release artifact 层，不应与 example seed 默认同步更新
 
     当前情况假设如下：
     - 我已经有一个新的空 git repo
     - 我已经把 RCOS bootstrap pack 解压进项目目录
     - 项目目录里已经有 .rcos/、.cursor/ 和 .rcos_examples/
-    - 我接下来会在 Cursor / Codex 中开启一个新的 conversation 来真正 bootstrap 这个项目
-    - 你的任务是先和我把项目 idea 聊清楚，然后为 Codex 生成一份定制的 bootstrap prompt
+    - 我接下来会在一个新的 coding-agent conversation 中真正 bootstrap 这个项目
+    - 你的任务是先帮我把项目想法聊清楚，然后为这个 coding agent 生成一份定制的 RCOS bootstrap prompt
 
-    你的工作分两阶段：
+    你的工作分两阶段。
 
     第一阶段：和我一起澄清项目
-    你需要主动帮助我整理这些内容：
+
+    你需要主动帮助我整理：
     - 项目要解决的问题
     - 目标用户
     - 项目目标
@@ -202,20 +205,32 @@ English version: [RCOS_Project_Startup_Guide.md](./RCOS_Project_Startup_Guide.md
     - 第一阶段范围
     - 非目标
     - 技术偏好或约束
-    - 风险点
+    - 主要风险
     - 暂时假设
     - 仍然开放的问题
 
-    这阶段你不要直接写代码，也不要过早替我定规格。
-    如果信息不够清楚，你要继续追问并帮助我收敛。
+    这一阶段：
+    - 不要写代码
+    - 不要直接 scaffold
+    - 不要过早锁定规格
+    - 如果信息还模糊，就继续追问并帮助我收敛
 
-    第二阶段：生成一份给 Codex 的完整 bootstrap prompt
-    当你认为项目已经足够清楚时，请输出一份可直接复制到 Codex 新 conversation 里的完整 prompt。
+    第二阶段：生成一份给 coding agent 的完整 bootstrap prompt
 
-    这份给 Codex 的 prompt 必须：
-    1. 明确这是一个 RCOS-controlled new project bootstrap task
-    2. 把我们刚才聊清楚的项目 idea、目标、范围、约束、假设整合进去
-    3. 明确要求 Codex 在开始任何 high-level planning、代码 scaffold 或 project-specific context generation 之前，先读取并理解以下 RCOS 文件（如果存在）：
+    当你认为项目已经足够清楚时，请输出一份可以直接复制到新的 coding-agent conversation 里的完整 prompt。
+
+    这份 prompt 必须足够完整、足够明确，以免 coding agent 不清楚：
+    - RCOS 是什么
+    - 当前任务是什么
+    - 哪些文件必须先读
+    - 必须遵守什么 workflow
+    - 在写代码或生成 project-specific RCOS 文件之前要先做什么
+
+    这份给 coding agent 的 prompt 必须：
+
+    1. 明确说明这是一个 RCOS-controlled new-project bootstrap task
+    2. 把我们刚才澄清过的项目 idea、目标、范围、约束、假设和开放问题整合进去
+    3. 明确要求 coding agent 在开始任何 planning、scaffold 或 project-specific RCOS generation 之前，先定位并读取以下 RCOS 文件（如果存在）：
 
        - .cursor/rules/rcos_enforced.md
        - .cursor/rules/rcos_approval_gate.md
@@ -230,10 +245,11 @@ English version: [RCOS_Project_Startup_Guide.md](./RCOS_Project_Startup_Guide.md
        - .rcos/manifest/RCOS_DNA_REGISTRY.yaml
        - .rcos/prompts/BOOTSTRAP_PACK_USAGE_NOTE.md
 
-    4. 明确要求 Codex 把这些文件当作 system-level / template-level rules 来理解，并以它们作为后续 bootstrap 的起点，而不是直接跳去读整个 repo
-    5. 要求 Codex 继续读取这些核心文件中明确引用为 authoritative 或 required 的其他 RCOS 文件
-    6. 要求 Codex 先做 high-level planning，而不是立即写代码
-    7. 要求 Codex 建立初始 project-specific context，包括：
+    4. 明确要求 coding agent 把这些文件当作 system-level / template-level rules
+    5. 明确要求 coding agent 继续读取这些核心文件中被标记为 authoritative 或 required 的其他 RCOS 文件
+    6. 明确要求 coding agent 不要一上来扫描整个 repo
+    7. 明确要求 coding agent 先做 high-level planning，再决定是否写代码
+    8. 明确要求 coding agent 建立或生成初始 project-specific context，包括：
        - .rcos/manifest/project/PROJECT_BACKGROUND.md
        - .rcos/manifest/project/PROJECT_STATUS.md
        - .rcos/manifest/project/PROJECT_ASSUMPTIONS.md
@@ -241,40 +257,47 @@ English version: [RCOS_Project_Startup_Guide.md](./RCOS_Project_Startup_Guide.md
        - .rcos/manifest/project/CURRENT_BASELINE.md
        - .rcos/manifest/project/module_index.yaml
        - .rcos/manifest/project/PROJECT_ROADMAP.md
-       - 如项目使用 DNA 机制，则包括 .rcos/manifest/project/PROJECT_RCOS_EVOLUTION.md
-       - 如合适，也包括 onboarding / collaboration / maintenance 相关 project files
+       - 如果项目使用 DNA 机制，则包括 .rcos/manifest/project/PROJECT_RCOS_EVOLUTION.md
+       - 如有必要，也包括 onboarding / collaboration / maintenance 相关 project files
+    9. 明确要求 coding agent 只在需要时建立初始代码结构和最小 scaffold
+    10. 明确要求 coding agent 持续区分：
+        - confirmed facts
+        - working assumptions
+        - open questions
+    11. 明确要求 coding agent 使用最小必要上下文，不静默扩 scope
+    12. 明确要求 coding agent 在非 trivial 工作中遵守以下顺序：
+        - Scope Check
+        - Context Summary
+        - Change Intent
+        - Change Plan
+        - 等待确认后再实施
+    13. 明确要求 coding agent 把 .rcos_examples/ 只当作 example seed / reference，不能把其中内容当成当前项目事实
+    14. 明确要求 coding agent 如果在 bootstrap 过程中发现可复用的 RCOS 改进，就：
+        - 先在当前项目内稳定该实践
+        - 区分项目内实践与通用 RCOS DNA
+        - 标记 contributor project
+        - 只在得到我的确认后才提议上行同步
+        - 不要把 contributor project 的演化误写进无关 example seed
+    15. 明确要求 coding agent 的第一条回复只做到规划阶段，然后停下来等待确认
 
-    8. 要求 Codex 在需要时建立初始代码结构和最小 scaffold
-    9. 要求 Codex 区分：
-       - confirmed facts
-       - working assumptions
-       - open questions
-    10. 要求 Codex 使用最小必要上下文，不静默扩 scope
-    11. 要求 Codex 在 non-trivial 工作中遵守：
-       - Scope Check
-       - Context Summary
-       - Change Intent
-       - Change Plan
-       - 等待确认后再实施
-    12. 要求 Codex 在 bootstrap 过程中把 .rcos_examples/ 仅视为 example seed / reference，不能把其中的 project-specific 内容当成当前项目事实
-    13. 如果 bootstrap 过程中形成了可复用的 RCOS 改进，要要求 Codex：
-       - 先在当前项目内稳定该实践
-       - 区分项目内实践与通用 RCOS DNA
-       - 标记 contributor project
-       - 只在我确认后才提议回流本体 RCOS
-       - 不要把 contributor project 的演化误写进无关 example seed
-    14. 最终输出必须是完整成品，可直接复制给 Codex 使用
+    这份 prompt 还应明确要求 coding agent 的第一条回复必须包含：
+    - Scope Check
+    - Context Summary
+    - Bootstrap Intent
+    - Bootstrap Plan
+    - Proposed first batch of files to read
+    - 然后停止并等待确认
 
-    当你最终输出时，请只输出三部分：
+    当你最终输出结果时，请只输出三部分：
     1. Project Summary
     2. Assumptions And Open Questions
-    3. Codex RCOS New Project Bootstrap Prompt
+    3. Coding-Agent RCOS New Project Bootstrap Prompt
 
     请注意：
     - 和我交流时请使用我明确指定的语言；如果我没有指定，不要擅自绑定一种固定语言
-    - 最终生成给 Codex 的 bootstrap prompt 请用英文写；后续 conversation 的工作语言只在我明确指定时才写入 prompt
-    - 你的目标不是替代 Codex，而是为 Codex 生成一份高质量、边界清晰、可直接执行的 bootstrap prompt
-    - 如果我的 idea 还很模糊，请先帮助我把它收敛清楚
-    - 如果项目已经使用了最新本体 RCOS，请让生成给 Codex 的 prompt 优先兼容最新的 Roadmap / DNA / release cadence 规则
+    - 最终生成给 coding agent 的 bootstrap prompt 默认请用英文，除非我明确要求其他语言
+    - 只有在我明确要求时，才把后续工作语言写进 prompt
+    - 你的任务不是替代 coding agent，而是为它生成一份高质量、边界清晰、真正可执行的 bootstrap prompt
+    - 如果项目已经使用了最新本体 RCOS，请让生成的 prompt 兼容最新的 Roadmap / DNA / release cadence 规则
 
     如果你理解了，请先开始第一轮项目澄清，并先问我最关键的几个问题。

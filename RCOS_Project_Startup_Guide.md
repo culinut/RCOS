@@ -161,17 +161,17 @@ A durable division of labor looks like this:
 
 ## Appendix: Meta-prompt to paste into ChatGPT
 
-    Your task is not to write code directly. Your job is to first help me clarify a new project idea and then, based on the RCOS (Repository Context Operating System) methodology, generate a bootstrap prompt that can be executed directly by Codex.
+    Your task is not to write code directly. Your job is to first help me clarify a new project idea and then, based on the RCOS (Repository Context Operating System) methodology, generate a complete bootstrap prompt that can be pasted directly into a coding-agent conversation.
 
-    Here is the necessary background:
+    Here is the required background:
 
-    RCOS is a repository context operating system for human + general AI software collaboration. Its goal is not to make AI read more code, but to make AI read the right and minimal necessary context. It does this through explicit project context files, declared responsibility boundaries, and a plan-before-implementation workflow, reducing authority drift, intent loss, attention sprawl, and verification gaps.
+    RCOS is a repository context operating system for human + general AI software collaboration. Its goal is not to make AI read more code, but to make AI read the right and minimal necessary context. It does this through explicit project context files, declared responsibility boundaries, minimal-attention scanning, and a plan-before-implementation workflow. RCOS is meant to reduce authority drift, intent loss, attention sprawl, and verification gaps.
 
-    Some important characteristics of RCOS:
-    - context is not only something AI reads; much of it can also be generated and continuously maintained by AI
-    - project context is typically stored under .rcos/manifest/project/*
-    - reusable templates and rules usually live under .rcos/manifest/templates/*
-    - common prompts live under .rcos/prompts/*
+    In RCOS:
+    - project-specific context usually lives under .rcos/manifest/project/*
+    - reusable templates and system rules usually live under .rcos/manifest/templates/*
+    - common prompts usually live under .rcos/prompts/*
+    - example seeds under .rcos_examples/ are reference material only, not current-project truth
     - non-trivial work usually follows:
       - Scope Check
       - Context Summary
@@ -179,6 +179,8 @@ A durable division of labor looks like this:
       - Change Plan
       - wait for confirmation
       - then implement
+
+    Additional current RCOS expectations:
     - PROJECT_ROADMAP.md should be treated as a first-class project-specific RCOS file
     - if the project uses the RCOS DNA system, then PROJECT_RCOS_EVOLUTION.md, RCOS_EVOLUTION_PROTOCOL.md, and RCOS_DNA_REGISTRY.yaml also belong to the collaboration truth layer
     - example seeds are delayed-promotion success samples, not the current project's facts and not a high-frequency sync layer
@@ -188,13 +190,14 @@ A durable division of labor looks like this:
     - I already have a new empty git repository
     - I have already extracted the RCOS bootstrap pack into the project directory
     - the project directory already contains .rcos/, .cursor/, and .rcos_examples/
-    - I will next open a new conversation in Cursor / Codex to actually bootstrap this project
-    - your task is to help me clarify the idea and then generate a customized bootstrap prompt for Codex
+    - I will next open a new coding-agent conversation to actually bootstrap this project
+    - your task is to help me clarify the project and then generate a customized RCOS bootstrap prompt for that coding agent
 
-    Your work has two phases:
+    Your work has two phases.
 
     Phase 1: Clarify the project with me
-    You should actively help me organize the following:
+
+    You should actively help me organize:
     - the problem the project solves
     - the target users
     - the project goals
@@ -202,20 +205,32 @@ A durable division of labor looks like this:
     - the phase-one scope
     - the non-goals
     - the technical preferences or constraints
-    - the risk points
+    - the main risks
     - the temporary assumptions
     - the still-open questions
 
-    During this phase, do not write code directly and do not lock the specification too early.
-    If the information is not clear enough, keep asking follow-up questions and help me narrow it down.
+    During this phase:
+    - do not write code
+    - do not jump into scaffolding
+    - do not freeze the specification too early
+    - if the idea is still vague, keep asking follow-up questions and help me narrow it down
 
-    Phase 2: Generate a complete bootstrap prompt for Codex
-    Once you believe the project is clear enough, output a complete prompt that can be copied directly into a new Codex conversation.
+    Phase 2: Generate a complete bootstrap prompt for the coding agent
 
-    That Codex prompt must:
-    1. clearly state that this is an RCOS-controlled new project bootstrap task
-    2. integrate the project idea, goals, scope, constraints, and assumptions we clarified
-    3. explicitly require Codex, before starting any high-level planning, code scaffold, or project-specific context generation, to first locate and read these RCOS files if they exist:
+    Once you believe the project is clear enough, output a complete prompt that I can paste directly into a new coding-agent conversation.
+
+    That coding-agent prompt must be long enough and explicit enough that the agent will not be confused about:
+    - what RCOS is
+    - what the current task is
+    - what files must be read first
+    - what workflow must be followed
+    - what should happen before any code or project-specific RCOS files are written
+
+    The generated prompt must:
+
+    1. clearly state that this is an RCOS-controlled new-project bootstrap task
+    2. integrate the clarified project idea, goals, scope, constraints, assumptions, and open questions
+    3. explicitly require the agent, before any planning, scaffolding, or project-specific RCOS generation, to first locate and read these RCOS files if they exist:
 
        - .cursor/rules/rcos_enforced.md
        - .cursor/rules/rcos_approval_gate.md
@@ -230,10 +245,11 @@ A durable division of labor looks like this:
        - .rcos/manifest/RCOS_DNA_REGISTRY.yaml
        - .rcos/prompts/BOOTSTRAP_PACK_USAGE_NOTE.md
 
-    4. explicitly require Codex to treat those files as system-level / template-level rules and use them as the starting point for bootstrap, instead of jumping straight into scanning the entire repository
-    5. require Codex to continue reading any additional RCOS files that those core files explicitly mark as authoritative or required
-    6. require Codex to do high-level planning before writing code
-    7. require Codex to create the initial project-specific context, including:
+    4. explicitly require the agent to treat those files as system-level / template-level rules
+    5. explicitly require the agent to continue reading any additional RCOS files that those core files identify as authoritative or required
+    6. explicitly require the agent not to jump straight into scanning the entire repository
+    7. explicitly require the agent to do high-level planning before writing code
+    8. explicitly require the agent to establish or generate the initial project-specific context, including:
        - .rcos/manifest/project/PROJECT_BACKGROUND.md
        - .rcos/manifest/project/PROJECT_STATUS.md
        - .rcos/manifest/project/PROJECT_ASSUMPTIONS.md
@@ -243,37 +259,45 @@ A durable division of labor looks like this:
        - .rcos/manifest/project/PROJECT_ROADMAP.md
        - if the project uses the DNA system, .rcos/manifest/project/PROJECT_RCOS_EVOLUTION.md
        - and, when appropriate, onboarding / collaboration / maintenance project files as well
-    8. require Codex to create initial code structure and minimal scaffold when needed
-    9. require Codex to distinguish:
-       - confirmed facts
-       - working assumptions
-       - open questions
-    10. require Codex to use minimal necessary context and not silently widen scope
-    11. require Codex to follow this sequence for non-trivial work:
-       - Scope Check
-       - Context Summary
-       - Change Intent
-       - Change Plan
-       - wait for confirmation before implementation
-    12. require Codex to treat .rcos_examples/ only as example seeds / reference material and never as the current project's facts
-    13. if reusable RCOS improvements emerge during bootstrap, require Codex to:
-       - stabilize the practice in the current project first
-       - distinguish between project-local practice and reusable RCOS DNA
-       - tag the contributor project
-       - only propose syncing it back to the core RCOS repository after my confirmation
-       - never write contributor-project evolution into an unrelated example seed
-    14. make the final output a complete artifact that can be copied directly into Codex
+    9. explicitly require the agent to create initial code structure and minimal scaffold only when needed
+    10. explicitly require the agent to distinguish:
+        - confirmed facts
+        - working assumptions
+        - open questions
+    11. explicitly require the agent to use minimal necessary context and not silently widen scope
+    12. explicitly require the agent to follow this sequence for non-trivial work:
+        - Scope Check
+        - Context Summary
+        - Change Intent
+        - Change Plan
+        - wait for confirmation before implementation
+    13. explicitly require the agent to treat .rcos_examples/ only as example seeds / reference material and never as current-project truth
+    14. explicitly require the agent, if reusable RCOS improvements emerge during bootstrap, to:
+        - stabilize the practice in the current project first
+        - distinguish between project-local practice and reusable RCOS DNA
+        - tag the contributor project
+        - only propose upstream sync after my confirmation
+        - never write contributor-project evolution into an unrelated example seed
+    15. explicitly require the agent's first response to stop after the planning stage and wait for confirmation
+
+    The generated coding-agent prompt should instruct the agent that its first response must include:
+    - Scope Check
+    - Context Summary
+    - Bootstrap Intent
+    - Bootstrap Plan
+    - Proposed first batch of files to read
+    - and then stop to wait for confirmation
 
     When you finally output the result, output only these three sections:
     1. Project Summary
     2. Assumptions And Open Questions
-    3. Codex RCOS New Project Bootstrap Prompt
+    3. Coding-Agent RCOS New Project Bootstrap Prompt
 
     Important notes:
     - use the language I explicitly ask for when talking with me; if I do not specify one, do not hard-code a conversation language on your own
-    - write the final bootstrap prompt for Codex in English; only specify the later working language if I explicitly ask for one
-    - your job is not to replace Codex, but to generate a high-quality, executable, and well-bounded bootstrap prompt for Codex
-    - if my idea is still too vague, help me narrow it down first
-    - if the project already uses the latest core RCOS, make sure the generated Codex prompt is compatible with the latest Roadmap / DNA / release cadence rules
+    - write the final bootstrap prompt for the coding agent in English unless I explicitly ask for another language
+    - only specify the later working language if I explicitly ask for one
+    - your job is not to replace the coding agent, but to generate a high-quality, executable, and well-bounded bootstrap prompt for it
+    - if the project already uses the latest core RCOS, make sure the generated prompt is compatible with the latest Roadmap / DNA / release cadence rules
 
     If you understand, start with the first round of project clarification and ask me the most important questions first.

@@ -103,11 +103,35 @@ English version: [RCOS_Existing_Codebase_Adoption_Guide.md](./RCOS_Existing_Code
 
     你的任务不是实现功能，而是帮助我为一个已有代码库准备 RCOS bootstrap conversation。
 
-    这不是一个 greenfield project。这个仓库已经包含代码、文档和历史假设。
+    这不是一个 greenfield project。这个仓库已经包含代码、文档、历史假设，以及很可能尚未文档化的设计决策。
 
     我希望你帮助我做两件事：
-    1. 澄清一个 coding agent 在扫描仓库前最需要掌握的最小背景
-    2. 生成一份干净的 existing-codebase RCOS bootstrap prompt，供我直接贴给 coding agent
+    1. 澄清一个 coding agent 在扫描仓库前最需要掌握的最小但高价值背景
+    2. 生成一份完整的 existing-codebase RCOS bootstrap prompt，供我直接贴给 coding agent
+
+    先给你必要的 RCOS 背景：
+
+    RCOS 是一套面向人类与通用 AI 协作开发的仓库上下文操作系统。它的目的，是通过正确的文件读取顺序、显式规划、确认门禁和 project-specific context，降低 authority drift、intent loss、attention sprawl 和 verification gaps。
+
+    在 RCOS 里：
+    - project-specific context 通常在 .rcos/manifest/project/*
+    - 可复用模板和系统规则通常在 .rcos/manifest/templates/*
+    - prompts 通常在 .rcos/prompts/*
+    - .rcos_examples/ 下的 example seed 只是参考材料，不是当前项目事实
+    - 非 trivial 的仓库任务通常要先输出：
+      - Scope Check
+      - Context Summary
+      - Change Intent 或 Bootstrap Intent
+      - Change Plan 或 Bootstrap Plan
+      - 等确认
+      - 再实施
+
+    额外的当前 RCOS 预期：
+    - PROJECT_ROADMAP.md 在存在时应被视为正式的 project-specific RCOS 文件
+    - 如果项目启用了 RCOS DNA 机制，则 PROJECT_RCOS_EVOLUTION.md、RCOS_EVOLUTION_PROTOCOL.md、RCOS_DNA_REGISTRY.yaml 也属于协作真相层
+    - coding agent 不能静默扩大 scope
+    - coding agent 不能把缺失功能当成已存在
+    - coding agent 不能把 example seed 当成当前项目事实
 
     请遵守这些原则：
     - 把这次工作当成一个 existing-codebase RCOS adoption task
@@ -116,6 +140,7 @@ English version: [RCOS_Existing_Codebase_Adoption_Guide.md](./RCOS_Existing_Code
     - 优先分阶段扫描，不要一上来全仓扫描
     - 区分 confirmed facts、working assumptions 和 open questions
     - 保持 scope 收敛
+    - 不要让 coding agent 直接跳进代码修改
 
     请帮助我整理：
     - 这个仓库是做什么的
@@ -123,16 +148,41 @@ English version: [RCOS_Existing_Codebase_Adoption_Guide.md](./RCOS_Existing_Code
     - 哪些还只是计划
     - 哪些文件适合作为第一批阅读材料
     - 哪些不确定点应该在 bootstrap 过程中和人类确认
+    - 哪些 project-specific RCOS 文件大概率需要新建或修正
 
     当你认为上下文已经足够清楚时，请输出一份给 coding agent 的干净 bootstrap prompt。
 
-    这份 prompt 应当：
+    这份生成出来的 prompt 必须：
     - 明确说明这是一个 existing-codebase RCOS bootstrap task
-    - 要求 agent 先读取 RCOS 核心规则与模板
-    - 要求 agent 分阶段扫描，而不是整仓扫描
-    - 要求 agent 在任何写入之前先输出 Scope Check、Context Summary、Bootstrap Intent、Bootstrap Plan
-    - 要求 agent 在得到确认前不要大面积生成或修改 project-specific RCOS 文件
-    - 要求 agent 在整个 bootstrap 过程中持续区分 confirmed facts、working assumptions 和 open questions
+    - 明确说明这不是一个 greenfield project
+    - 要求 coding agent 先读取 RCOS 核心规则与模板
+    - 明确要求 coding agent 在 planning 或大范围扫描之前，先定位并读取以下文件（如果存在）：
+      - .cursor/rules/rcos_enforced.md
+      - .cursor/rules/rcos_approval_gate.md
+      - .rcos/manifest/templates/META_INSTRUCTIONS.md
+      - .rcos/manifest/templates/coding_contract.md
+      - .rcos/manifest/templates/RCOS_RUNBOOK.md
+      - .rcos/manifest/templates/CHANGE_PLAN_PROMPT.md
+      - .rcos/manifest/templates/PATCH_WORKFLOW.md
+      - .rcos/manifest/templates/RCOS_UPDATE_PROTOCOL.md
+      - .rcos/manifest/templates/PROJECT_SPECIFIC_RCOS_PROMPT_UNIT.md
+      - .rcos/manifest/templates/RCOS_EVOLUTION_PROTOCOL.md
+      - .rcos/manifest/RCOS_DNA_REGISTRY.yaml
+      - .rcos/prompts/BOOTSTRAP_PACK_USAGE_NOTE.md
+      - .rcos/prompts/EXISTING_CODEBASE_RCOS_BOOTSTRAP_PROMPT.md
+    - 要求 coding agent 继续读取这些材料中被标为 authoritative 或 required 的其他 RCOS 文件
+    - 要求 coding agent 分阶段扫描，而不是整仓扫描
+    - 要求 coding agent 在任何大写入之前先输出：
+      - Scope Check
+      - Context Summary
+      - Bootstrap Intent
+      - Bootstrap Plan
+      - Proposed first batch of files to read
+    - 要求 coding agent 在那个阶段停下来等待确认
+    - 要求 coding agent 在整个 bootstrap 过程中持续区分 confirmed facts、working assumptions 和 open questions
+    - 要求 coding agent 在事实不足前不要大面积生成 project-specific RCOS 文件
+    - 要求 coding agent 不要顺手进入功能开发，除非被明确要求
+    - 要求 coding agent 在事实足够后，再生成或更新相关的 .rcos/manifest/project/* 文件
 
     请使用我明确指定的语言；如果我没有指定，不要没必要地强绑某种固定语言。
 
