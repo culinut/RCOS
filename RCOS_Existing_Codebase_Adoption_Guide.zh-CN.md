@@ -86,105 +86,69 @@ English version: [RCOS_Existing_Codebase_Adoption_Guide.md](./RCOS_Existing_Code
 - 不要把产品方向重新发明一遍
 - 不要顺手进入功能开发，除非被明确要求
 
-## 7. 可选：先用对话模型整理 bootstrap 输入
+## 7. 可直接复制给 coding agent 的 prompt
 
-如果这个仓库很大、很乱、历史负担很重，或者文档状态不好，先单独开一个对话模型 conversation 来整理 bootstrap 输入，通常会更稳。
+如果你不想自己再组织 prompt，可以直接把下面这段贴进一个新的 coding-agent conversation。
 
-这是可选步骤，但在下面这些情况尤其有帮助：
+    This repository is managed under the RCOS (Repository Context Operating System) methodology.
 
-- 代码库历史包袱较多
-- 入口点很多
-- 大量假设还只存在于工程师脑中
-- 你希望 coding agent 的 bootstrap conversation 一开始就有更清晰的 scope 和背景
+    This is an existing-codebase RCOS bootstrap task, not a greenfield project and not a feature-implementation task.
 
-## 附录：用于准备 existing-codebase bootstrap 的元提示词
+    Your job is to bootstrap or refine the RCOS collaboration layer for an already-existing repository.
 
-如果你想先让对话模型帮你整理一版更干净的 bootstrap prompt，再交给 coding agent，可以把下面这段贴进去。
+    Before doing any broad scanning, planning, or code changes, first locate and read these files if they exist:
 
-    你的任务不是实现功能，而是帮助我为一个已有代码库准备 RCOS bootstrap conversation。
+    - `.cursor/rules/rcos_enforced.md`
+    - `.cursor/rules/rcos_approval_gate.md`
+    - `.rcos/manifest/templates/META_INSTRUCTIONS.md`
+    - `.rcos/manifest/templates/coding_contract.md`
+    - `.rcos/manifest/templates/RCOS_RUNBOOK.md`
+    - `.rcos/manifest/templates/CHANGE_PLAN_PROMPT.md`
+    - `.rcos/manifest/templates/PATCH_WORKFLOW.md`
+    - `.rcos/manifest/templates/RCOS_UPDATE_PROTOCOL.md`
+    - `.rcos/manifest/templates/PROJECT_SPECIFIC_RCOS_PROMPT_UNIT.md`
+    - `.rcos/manifest/templates/RCOS_EVOLUTION_PROTOCOL.md`
+    - `.rcos/manifest/RCOS_DNA_REGISTRY.yaml`
+    - `.rcos/prompts/BOOTSTRAP_PACK_USAGE_NOTE.md`
+    - `.rcos/prompts/EXISTING_CODEBASE_RCOS_BOOTSTRAP_PROMPT.md`
 
-    这不是一个 greenfield project。这个仓库已经包含代码、文档、历史假设，以及很可能尚未文档化的设计决策。
+    Treat these as system-level or template-level rules.
 
-    我希望你帮助我做两件事：
-    1. 澄清一个 coding agent 在扫描仓库前最需要掌握的最小但高价值背景
-    2. 生成一份完整的 existing-codebase RCOS bootstrap prompt，供我直接贴给 coding agent
+    If any of the above files identify additional RCOS files as authoritative or required, continue reading those too before proceeding.
 
-    先给你必要的 RCOS 背景：
+    This repository already has code, documents, historical assumptions, and likely some undocumented decisions.
+    Do not treat it as a blank project.
+    Do not assume missing functionality.
+    Do not rewrite the product from scratch.
+    Do not opportunistically implement features unless I explicitly ask for that.
 
-    RCOS 是一套面向人类与通用 AI 协作开发的仓库上下文操作系统。它的目的，是通过正确的文件读取顺序、显式规划、确认门禁和 project-specific context，降低 authority drift、intent loss、attention sprawl 和 verification gaps。
+    During bootstrap, you must:
 
-    在 RCOS 里：
-    - project-specific context 通常在 .rcos/manifest/project/*
-    - 可复用模板和系统规则通常在 .rcos/manifest/templates/*
-    - prompts 通常在 .rcos/prompts/*
-    - .rcos_examples/ 下的 example seed 只是参考材料，不是当前项目事实
-    - 非 trivial 的仓库任务通常要先输出：
-      - Scope Check
-      - Context Summary
-      - Change Intent 或 Bootstrap Intent
-      - Change Plan 或 Bootstrap Plan
-      - 等确认
-      - 再实施
+    - scan the repository in stages rather than all at once
+    - distinguish confirmed facts, working assumptions, and open questions
+    - confirm key uncertainties with me as needed
+    - avoid silently widening scope
+    - avoid writing large project-specific RCOS files before enough facts are confirmed
 
-    额外的当前 RCOS 预期：
-    - PROJECT_ROADMAP.md 在存在时应被视为正式的 project-specific RCOS 文件
-    - 如果项目启用了 RCOS DNA 机制，则 PROJECT_RCOS_EVOLUTION.md、RCOS_EVOLUTION_PROTOCOL.md、RCOS_DNA_REGISTRY.yaml 也属于协作真相层
-    - coding agent 不能静默扩大 scope
-    - coding agent 不能把缺失功能当成已存在
-    - coding agent 不能把 example seed 当成当前项目事实
+    Before any large write, your first response must include:
 
-    请遵守这些原则：
-    - 把这次工作当成一个 existing-codebase RCOS adoption task
-    - 不要假设缺失功能
-    - 不要把产品重新从零设计一遍
-    - 优先分阶段扫描，不要一上来全仓扫描
-    - 区分 confirmed facts、working assumptions 和 open questions
-    - 保持 scope 收敛
-    - 不要让 coding agent 直接跳进代码修改
+    1. Scope Check
+    2. Context Summary
+    3. Bootstrap Intent
+    4. Bootstrap Plan
+    5. Proposed first batch of files to read
 
-    请帮助我整理：
-    - 这个仓库是做什么的
-    - 哪些内容已经实现
-    - 哪些还只是计划
-    - 哪些文件适合作为第一批阅读材料
-    - 哪些不确定点应该在 bootstrap 过程中和人类确认
-    - 哪些 project-specific RCOS 文件大概率需要新建或修正
+    Then stop and wait for my confirmation.
 
-    当你认为上下文已经足够清楚时，请输出一份给 coding agent 的干净 bootstrap prompt。
+    Throughout the bootstrap, maintain the distinction between:
 
-    这份生成出来的 prompt 必须：
-    - 明确说明这是一个 existing-codebase RCOS bootstrap task
-    - 明确说明这不是一个 greenfield project
-    - 要求 coding agent 先读取 RCOS 核心规则与模板
-    - 明确要求 coding agent 在 planning 或大范围扫描之前，先定位并读取以下文件（如果存在）：
-      - .cursor/rules/rcos_enforced.md
-      - .cursor/rules/rcos_approval_gate.md
-      - .rcos/manifest/templates/META_INSTRUCTIONS.md
-      - .rcos/manifest/templates/coding_contract.md
-      - .rcos/manifest/templates/RCOS_RUNBOOK.md
-      - .rcos/manifest/templates/CHANGE_PLAN_PROMPT.md
-      - .rcos/manifest/templates/PATCH_WORKFLOW.md
-      - .rcos/manifest/templates/RCOS_UPDATE_PROTOCOL.md
-      - .rcos/manifest/templates/PROJECT_SPECIFIC_RCOS_PROMPT_UNIT.md
-      - .rcos/manifest/templates/RCOS_EVOLUTION_PROTOCOL.md
-      - .rcos/manifest/RCOS_DNA_REGISTRY.yaml
-      - .rcos/prompts/BOOTSTRAP_PACK_USAGE_NOTE.md
-      - .rcos/prompts/EXISTING_CODEBASE_RCOS_BOOTSTRAP_PROMPT.md
-    - 要求 coding agent 继续读取这些材料中被标为 authoritative 或 required 的其他 RCOS 文件
-    - 要求 coding agent 分阶段扫描，而不是整仓扫描
-    - 要求 coding agent 在任何大写入之前先输出：
-      - Scope Check
-      - Context Summary
-      - Bootstrap Intent
-      - Bootstrap Plan
-      - Proposed first batch of files to read
-    - 要求 coding agent 在那个阶段停下来等待确认
-    - 要求 coding agent 在整个 bootstrap 过程中持续区分 confirmed facts、working assumptions 和 open questions
-    - 要求 coding agent 在事实不足前不要大面积生成 project-specific RCOS 文件
-    - 要求 coding agent 不要顺手进入功能开发，除非被明确要求
-    - 要求 coding agent 在事实足够后，再生成或更新相关的 .rcos/manifest/project/* 文件
+    - confirmed facts
+    - working assumptions
+    - open questions
 
-    请使用我明确指定的语言；如果我没有指定，不要没必要地强绑某种固定语言。
+    Once enough facts are gathered, generate or refine the relevant `.rcos/manifest/project/*` files.
+
+    Use the language I explicitly request. If I do not specify a language, do not hard-code one unnecessarily.
 
 ## 8. bootstrap 完成后回到正常 RCOS 使用方式
 

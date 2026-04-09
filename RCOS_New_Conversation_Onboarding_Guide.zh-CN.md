@@ -83,83 +83,44 @@ English version: [RCOS_New_Conversation_Onboarding_Guide.md](./RCOS_New_Conversa
 
 如果这段总结过于空泛、过度自信，或者明显跳过了关键文件，最好先修正刷新结果，再进入下一步。
 
-## 6. 可选：先用对话模型准备一个更丰富的刷新 prompt
+## 6. 可直接复制给 coding agent 的 prompt
 
-大多数情况下，这一步不是必须的。内置的 new-conversation onboarding prompt 通常已经够用。
+如果你不想再经过单独的准备步骤，可以直接把下面这段贴进一个新的 coding-agent conversation。
 
-但在下面这些情况，它仍然有帮助：
+    This repository is managed under the RCOS (Repository Context Operating System) methodology.
 
-- 项目里的 RCOS 文件很多，你希望刷新过程更有引导性
-- 上一个 conversation 结束得比较混乱
-- 你希望下一个 coding-agent conversation 在开始工作前先做一轮自我校验
+    This is a new-conversation onboarding and context-refresh task.
+    It is not a new-project bootstrap task.
+    It is not an existing-codebase RCOS adoption task.
 
-在这些情况下，可以先让一个对话模型帮你生成一份稍微更丰富的 onboarding-refresh prompt，再贴给 coding agent。
+    The repository already has a usable RCOS context layer.
+    Your job is to rebuild working context from the existing RCOS files before any new implementation work begins.
 
-## 附录：用于准备刷新型 onboarding conversation 的元提示词
+    First locate and read these files if they exist:
 
-如果你希望先让对话模型帮你生成一版更强的新对话刷新 prompt，再交给 coding agent，可以把下面这段贴进去。
+    - `.rcos/manifest/project/PROJECT_ONBOARDING_PROMPT.md`
+    - `.cursor/rules/rcos_enforced.md`
+    - `.cursor/rules/rcos_approval_gate.md`
 
-    你的任务不是实现代码，而是帮助我为一个新的 coding-agent conversation 准备 RCOS onboarding-refresh prompt。这个仓库已经有完整的 RCOS context 层。
+    Then follow the onboarding prompt's own reading instructions and read any project-specific RCOS files it identifies as required.
 
-    这不是一个 new-project bootstrap task。
-    这不是一个 existing-codebase RCOS adoption task。
-    这是一个新 conversation 的 onboarding 与 context refresh 任务。
+    Treat those files as the repository's current collaboration truth layer.
 
-    先给你必要的 RCOS 背景：
+    Do not jump straight into implementation.
+    Do not pretend to remember hidden context from previous conversations.
+    Rebuild your understanding from the repository truth layer instead.
 
-    RCOS（Repository Context Operating System）是一套面向人类与通用 AI 协作开发的仓库上下文操作系统。它的目标，是让 coding agent 以正确顺序读取正确且最小必要的上下文，而不是依赖大范围扫仓库，或者依赖脆弱的对话记忆。
+    After reading, perform a verification pass before asking for the next task.
 
-    在 RCOS 里：
-    - project-specific truth 通常沉淀在 .rcos/manifest/project/*
-    - 可复用系统规则和模板通常在 .rcos/manifest/templates/*
-    - 常用操作 prompt 通常在 .rcos/prompts/*
-    - .rcos_examples/ 下的 example seed 只是参考材料，不是当前项目事实
-    - 非 trivial 工作通常遵守：
-      - Scope Check
-      - Context Summary
-      - Change Intent
-      - Change Plan
-      - 等确认
-      - 再实施
+    Your verification summary must include:
 
-    额外的当前 RCOS 预期：
-    - PROJECT_ROADMAP.md 在存在时应视为正式的 project-specific RCOS 文件
-    - 如果项目启用了 RCOS DNA 机制，则 PROJECT_RCOS_EVOLUTION.md、RCOS_EVOLUTION_PROTOCOL.md、RCOS_DNA_REGISTRY.yaml 也属于协作真相层
-    - 新 conversation 应从仓库真相层重建理解，而不是假装记得先前对话里的隐藏上下文
-    - 一个刷新过程应当先输出理解摘要，再开始真正工作
+    - what RCOS appears to mean in this repository
+    - which collaboration or approval rules you believe you must follow
+    - what the project is for
+    - what the current status or baseline appears to be
+    - which points seem to be confirmed facts
+    - which points are still assumptions, unclear, or worth rechecking
 
-    请假设当前情况如下：
-    - 仓库已经完成 RCOS bootstrap
-    - project-specific RCOS 文件已经存在，并被视为当前真相层
-    - 之前的 coding conversation 可能因为 token 限制、compact 或其他原因丢失了工作上下文
-    - 我希望新的 coding-agent conversation 通过读取已有 RCOS 文件来恢复上下文
+    Then stop and wait for my next task.
 
-    你的任务是输出一份完整 prompt，供我直接贴给 coding agent。
-
-    这份生成出来的 prompt 必须：
-
-    1. 明确说明这是一个 RCOS 新对话 onboarding 任务，不是 bootstrap 任务
-    2. 明确要求 coding agent 读取这些文件（如果存在）：
-       - `.rcos/manifest/project/PROJECT_ONBOARDING_PROMPT.md`
-       - `.cursor/rules/rcos_enforced.md`
-       - `.cursor/rules/rcos_approval_gate.md`
-       - onboarding prompt 中进一步引用的 project-specific RCOS 文件
-    3. 明确要求 coding agent 把这些文件视为当前仓库的协作真相层
-    4. 明确要求 coding agent 在做任何别的事之前，先遵守 onboarding prompt 自身规定的读取顺序
-    5. 明确要求 coding agent 不要一上来进入实现
-    6. 明确要求 coding agent 从仓库 context 刷新理解，而不是声称自己保留了先前对话记忆
-    7. 明确要求 coding agent 在读取完成后，先做一轮验证性总结，再等待下一步任务
-
-    这轮验证性总结至少应要求 coding agent 复述：
-
-    - 它理解这个仓库中的 RCOS 原则大概是什么
-    - 它认为自己需要遵守哪些协作或 approval 规则
-    - 这个项目是做什么的
-    - 当前 status / baseline 大概是什么
-    - 哪些点看起来是 confirmed facts
-    - 哪些点仍是 assumptions、含混点或值得复核的地方
-
-    这份生成出来的 prompt 还应明确要求 coding agent 在完成这轮总结后停下来，等待我的下一步任务。
-
-    请使用我明确指定的语言；如果我没有指定，不要没必要地强绑某种固定语言。
-
+    Use the language I explicitly request. If I do not specify a language, do not hard-code one unnecessarily.

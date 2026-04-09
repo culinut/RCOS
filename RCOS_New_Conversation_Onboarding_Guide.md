@@ -83,83 +83,44 @@ Before you continue into implementation, a good onboarding refresh should usuall
 
 If the summary is vague, overconfident, or clearly skipped key files, it is worth correcting the refresh before continuing.
 
-## 6. Optional: use a conversational model first to prepare a richer refresh prompt
+## 6. Copy-ready prompt for the coding agent
 
-In most cases, this is not necessary. The built-in new-conversation onboarding prompt should already be enough.
+If you want a direct prompt instead of relying on a separate preparation step, paste the following into a new coding-agent conversation.
 
-However, it can still help when:
+    This repository is managed under the RCOS (Repository Context Operating System) methodology.
 
-- the project has many RCOS files and you want a more guided refresh
-- the previous conversation ended in a confusing state
-- you want the next coding-agent conversation to self-verify its understanding before it starts work
-
-In those cases, you can first use a conversational model to generate a slightly richer onboarding-refresh prompt for the coding agent.
-
-## Appendix: Meta-prompt for preparing a refreshed onboarding conversation
-
-You can paste the following into a conversational model if you want help generating a stronger new-conversation refresh prompt for a coding agent.
-
-    Your task is not to implement code. Your task is to help me prepare a clean RCOS onboarding-refresh prompt for a new coding-agent conversation in a repository that already has a complete RCOS context layer.
-
-    This is not a new-project bootstrap task.
-    This is not an existing-codebase RCOS adoption task.
     This is a new-conversation onboarding and context-refresh task.
+    It is not a new-project bootstrap task.
+    It is not an existing-codebase RCOS adoption task.
 
-    Here is the required RCOS background:
+    The repository already has a usable RCOS context layer.
+    Your job is to rebuild working context from the existing RCOS files before any new implementation work begins.
 
-    RCOS (Repository Context Operating System) is a repository context operating system for human + general AI software collaboration. Its purpose is to make the coding agent read the right and minimal necessary context, in the right order, instead of relying on broad repository scans or fragile conversational memory.
+    First locate and read these files if they exist:
 
-    In RCOS:
-    - project-specific truth usually lives under .rcos/manifest/project/*
-    - reusable system rules and templates usually live under .rcos/manifest/templates/*
-    - common operational prompts usually live under .rcos/prompts/*
-    - example seeds under .rcos_examples/ are reference-only, not current-project truth
-    - non-trivial work usually follows:
-      - Scope Check
-      - Context Summary
-      - Change Intent
-      - Change Plan
-      - wait for confirmation
-      - then implement
+    - `.rcos/manifest/project/PROJECT_ONBOARDING_PROMPT.md`
+    - `.cursor/rules/rcos_enforced.md`
+    - `.cursor/rules/rcos_approval_gate.md`
 
-    Additional current RCOS expectations:
-    - PROJECT_ROADMAP.md is a first-class project-specific RCOS file when it exists
-    - if the project uses the RCOS DNA system, then PROJECT_RCOS_EVOLUTION.md, RCOS_EVOLUTION_PROTOCOL.md, and RCOS_DNA_REGISTRY.yaml also belong to the collaboration truth layer
-    - a new conversation should rebuild understanding from repository truth, not pretend to remember prior hidden context
-    - a refresh pass should summarize understanding before starting work
+    Then follow the onboarding prompt's own reading instructions and read any project-specific RCOS files it identifies as required.
 
-    Assume the following situation:
-    - the repository already completed RCOS bootstrap
-    - the project-specific RCOS files already exist and are considered the active truth layer
-    - the previous coding conversation may have hit token limits, been compacted, or otherwise lost working context
-    - I want a new coding-agent conversation to recover context by reading the existing RCOS files
+    Treat those files as the repository's current collaboration truth layer.
 
-    Your job is to produce a complete prompt that I can paste directly into a coding-agent conversation.
+    Do not jump straight into implementation.
+    Do not pretend to remember hidden context from previous conversations.
+    Rebuild your understanding from the repository truth layer instead.
 
-    The generated prompt must:
+    After reading, perform a verification pass before asking for the next task.
 
-    1. clearly state that this is an RCOS new-conversation onboarding task, not a bootstrap task
-    2. explicitly require the coding agent to read, if they exist:
-       - `.rcos/manifest/project/PROJECT_ONBOARDING_PROMPT.md`
-       - `.cursor/rules/rcos_enforced.md`
-       - `.cursor/rules/rcos_approval_gate.md`
-       - relevant project-specific RCOS files referenced by the onboarding prompt
-    3. explicitly require the coding agent to treat those files as the repository's current collaboration truth layer
-    4. explicitly require the coding agent to follow the onboarding prompt's own reading instructions before doing anything else
-    5. explicitly require the coding agent not to jump straight into implementation
-    6. explicitly require the coding agent to refresh understanding from repository context rather than claiming memory from prior conversations
-    7. explicitly require the coding agent, after reading, to perform a verification pass before asking for the next task
-
-    That verification pass should ask the coding agent to summarize:
+    Your verification summary must include:
 
     - what RCOS appears to mean in this repository
-    - which collaboration or approval rules it believes it must follow
+    - which collaboration or approval rules you believe you must follow
     - what the project is for
     - what the current status or baseline appears to be
-    - which points seem confirmed facts
+    - which points seem to be confirmed facts
     - which points are still assumptions, unclear, or worth rechecking
 
-    The generated prompt should also require the coding agent to stop after that summary and wait for the next user task.
+    Then stop and wait for my next task.
 
     Use the language I explicitly request. If I do not specify a language, do not hard-code one unnecessarily.
-

@@ -86,103 +86,67 @@ A good existing-codebase RCOS bootstrap should:
 - avoid rewriting the product direction from scratch
 - avoid opportunistic feature work unless explicitly requested
 
-## 7. Optional: use a conversational model first to prepare the bootstrap
+## 7. Copy-ready prompt for the coding agent
 
-If the repository is large, messy, historical, or poorly documented, it can help to first open a separate conversation with a conversational model and use it to prepare a better bootstrap prompt for the coding agent.
+If you want a direct prompt instead of composing one yourself, paste the following into a new coding-agent conversation.
 
-This is optional, but useful when:
+    This repository is managed under the RCOS (Repository Context Operating System) methodology.
 
-- the codebase has a lot of historical baggage
-- there are multiple possible entry points
-- assumptions are still partly in engineers' heads
-- you want the bootstrap conversation to start with cleaner scope and stronger background
+    This is an existing-codebase RCOS bootstrap task, not a greenfield project and not a feature-implementation task.
 
-## Appendix: Meta-prompt for preparing an existing-codebase bootstrap
+    Your job is to bootstrap or refine the RCOS collaboration layer for an already-existing repository.
 
-You can paste the following into a conversational model if you want help preparing a stronger bootstrap prompt before giving the task to the coding agent.
+    Before doing any broad scanning, planning, or code changes, first locate and read these files if they exist:
 
-    Your task is not to implement features. Your task is to help me prepare an RCOS bootstrap conversation for an existing codebase.
+    - `.cursor/rules/rcos_enforced.md`
+    - `.cursor/rules/rcos_approval_gate.md`
+    - `.rcos/manifest/templates/META_INSTRUCTIONS.md`
+    - `.rcos/manifest/templates/coding_contract.md`
+    - `.rcos/manifest/templates/RCOS_RUNBOOK.md`
+    - `.rcos/manifest/templates/CHANGE_PLAN_PROMPT.md`
+    - `.rcos/manifest/templates/PATCH_WORKFLOW.md`
+    - `.rcos/manifest/templates/RCOS_UPDATE_PROTOCOL.md`
+    - `.rcos/manifest/templates/PROJECT_SPECIFIC_RCOS_PROMPT_UNIT.md`
+    - `.rcos/manifest/templates/RCOS_EVOLUTION_PROTOCOL.md`
+    - `.rcos/manifest/RCOS_DNA_REGISTRY.yaml`
+    - `.rcos/prompts/BOOTSTRAP_PACK_USAGE_NOTE.md`
+    - `.rcos/prompts/EXISTING_CODEBASE_RCOS_BOOTSTRAP_PROMPT.md`
 
-    This is not a greenfield project. The repository already contains code, documentation, historical assumptions, and likely some undocumented decisions.
+    Treat these as system-level or template-level rules.
 
-    I want you to help me do two things:
-    1. clarify the minimum high-value background a coding agent should have before scanning the repository
-    2. generate a complete existing-codebase RCOS bootstrap prompt that I can paste directly into a coding-agent conversation
+    If any of the above files identify additional RCOS files as authoritative or required, continue reading those too before proceeding.
 
-    Here is the required RCOS background:
+    This repository already has code, documents, historical assumptions, and likely some undocumented decisions.
+    Do not treat it as a blank project.
+    Do not assume missing functionality.
+    Do not rewrite the product from scratch.
+    Do not opportunistically implement features unless I explicitly ask for that.
 
-    RCOS is a repository context operating system for human + general AI software collaboration. It is designed to reduce authority drift, intent loss, attention sprawl, and verification gaps by forcing the agent to read the right context, in the right order, with explicit planning and confirmation gates.
+    During bootstrap, you must:
 
-    In RCOS:
-    - project-specific context usually lives under .rcos/manifest/project/*
-    - reusable templates and system rules usually live under .rcos/manifest/templates/*
-    - prompts usually live under .rcos/prompts/*
-    - example seeds under .rcos_examples/ are reference-only, not current-project truth
-    - non-trivial repository tasks usually begin with:
-      - Scope Check
-      - Context Summary
-      - Change Intent or Bootstrap Intent
-      - Change Plan or Bootstrap Plan
-      - wait for confirmation
-      - then implement
-
-    Additional current RCOS expectations:
-    - PROJECT_ROADMAP.md is a first-class project-specific RCOS file when it exists
-    - if the project uses the RCOS DNA system, then PROJECT_RCOS_EVOLUTION.md, RCOS_EVOLUTION_PROTOCOL.md, and RCOS_DNA_REGISTRY.yaml also belong to the collaboration truth layer
-    - the coding agent should not silently widen scope
-    - the coding agent should not treat missing functionality as if it already exists
-    - the coding agent should not treat example seeds as current-project facts
-
-    Use these principles:
-    - treat this as an existing-codebase RCOS adoption task
-    - do not assume missing functionality
-    - do not rewrite the product from scratch
-    - prefer staged scanning over full-repo scanning
+    - scan the repository in stages rather than all at once
     - distinguish confirmed facts, working assumptions, and open questions
-    - keep scope narrow
-    - do not let the coding agent jump directly into code changes
+    - confirm key uncertainties with me as needed
+    - avoid silently widening scope
+    - avoid writing large project-specific RCOS files before enough facts are confirmed
 
-    Please help me organize:
-    - what the repository is for
-    - what is already implemented
-    - what is only planned
-    - which files are likely to be first-batch reading material
-    - which uncertainties should be confirmed with the human during bootstrap
-    - which project-specific RCOS files are likely to need creation or refinement
+    Before any large write, your first response must include:
 
-    When you think the context is clear enough, output a clean bootstrap prompt for a coding agent.
+    1. Scope Check
+    2. Context Summary
+    3. Bootstrap Intent
+    4. Bootstrap Plan
+    5. Proposed first batch of files to read
 
-    That generated prompt must:
-    - clearly say this is an existing-codebase RCOS bootstrap task
-    - explicitly say this is not a greenfield project
-    - require the coding agent to read the core RCOS rules and templates first
-    - explicitly require the coding agent, before planning or scanning broadly, to locate and read these files if they exist:
-      - .cursor/rules/rcos_enforced.md
-      - .cursor/rules/rcos_approval_gate.md
-      - .rcos/manifest/templates/META_INSTRUCTIONS.md
-      - .rcos/manifest/templates/coding_contract.md
-      - .rcos/manifest/templates/RCOS_RUNBOOK.md
-      - .rcos/manifest/templates/CHANGE_PLAN_PROMPT.md
-      - .rcos/manifest/templates/PATCH_WORKFLOW.md
-      - .rcos/manifest/templates/RCOS_UPDATE_PROTOCOL.md
-      - .rcos/manifest/templates/PROJECT_SPECIFIC_RCOS_PROMPT_UNIT.md
-      - .rcos/manifest/templates/RCOS_EVOLUTION_PROTOCOL.md
-      - .rcos/manifest/RCOS_DNA_REGISTRY.yaml
-      - .rcos/prompts/BOOTSTRAP_PACK_USAGE_NOTE.md
-      - .rcos/prompts/EXISTING_CODEBASE_RCOS_BOOTSTRAP_PROMPT.md
-    - require the agent to continue reading additional RCOS files that the above materials identify as authoritative or required
-    - require staged scanning rather than a full-repo scan
-    - require the agent to produce, before doing any large write:
-      - Scope Check
-      - Context Summary
-      - Bootstrap Intent
-      - Bootstrap Plan
-      - Proposed first batch of files to read
-    - require the agent to stop and wait for confirmation at that point
-    - require the agent to maintain the distinction between confirmed facts, working assumptions, and open questions throughout bootstrap
-    - require the agent not to generate large project-specific RCOS files before enough facts are confirmed
-    - require the agent not to opportunistically implement features unless explicitly requested
-    - require the agent, once enough facts are gathered, to generate or update the relevant .rcos/manifest/project/* files
+    Then stop and wait for my confirmation.
+
+    Throughout the bootstrap, maintain the distinction between:
+
+    - confirmed facts
+    - working assumptions
+    - open questions
+
+    Once enough facts are gathered, generate or refine the relevant `.rcos/manifest/project/*` files.
 
     Use the language I explicitly request. If I do not specify a language, do not hard-code one unnecessarily.
 
