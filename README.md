@@ -227,9 +227,10 @@ The two best entry points are:
 - `.rcos/prompts/BOOTSTRAP_PACK_USAGE_NOTE.md`
 - `.rcos/prompts/PROMPT_CATALOG.md`
 - [Project Startup Guide](./RCOS_Project_Startup_Guide.md)
+- [Existing Codebase Adoption Guide](./RCOS_Existing_Codebase_Adoption_Guide.md)
 - [Environment Setup Helper](./RCOS_Environment_Setup_Helper.md) (optional)
 
-The first explains how to unpack and use the bootstrap pack. The second helps you choose the right prompt for each situation. The startup guide explains a fuller human workflow for pairing a conversational model with a coding agent when starting a brand-new RCOS project. The environment setup helper is optional and is meant for users who want extra step-by-step setup guidance before beginning the RCOS flow.
+The first explains how to unpack and use the bootstrap pack. The second helps you choose the right prompt for each situation. The project startup guide is for brand-new repositories. The existing codebase adoption guide is for bringing RCOS into a repository that already has code and history. The environment setup helper is optional and is meant for users who want extra step-by-step setup guidance before beginning the RCOS flow.
 
 ## Bootstrapping a New Project
 
@@ -256,6 +257,7 @@ For an existing repository with code and docs already in place, the recommended 
 1. Prepare the README, directory tree, entry files, and engineer-provided background.
 2. Review:
    - `.rcos/prompts/EXISTING_CODEBASE_RCOS_BOOTSTRAP_MATERIALS_CHECKLIST.md`
+   - [`RCOS_Existing_Codebase_Adoption_Guide.md`](./RCOS_Existing_Codebase_Adoption_Guide.md)
 3. Use a dedicated new conversation with:
    - `.rcos/prompts/EXISTING_CODEBASE_RCOS_BOOTSTRAP_PROMPT.md`
 

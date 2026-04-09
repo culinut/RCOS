@@ -225,9 +225,10 @@ rcos_bootstrap_pack_with_examples.zip
 - `.rcos/prompts/BOOTSTRAP_PACK_USAGE_NOTE.md`
 - `.rcos/prompts/PROMPT_CATALOG.md`
 - [项目启动指南](./RCOS_Project_Startup_Guide.zh-CN.md)
+- [既有代码库引入指南](./RCOS_Existing_Codebase_Adoption_Guide.zh-CN.md)
 - [环境配置辅助指南](./RCOS_Environment_Setup_Helper.zh-CN.md)（可选）
 
-前者告诉你 bootstrap pack 该怎么解压和使用，后者告诉你不同场景该选哪个 prompt。新增的启动指南则补充了一个更完整的人类工作流，说明怎样配合对话模型与 coding agent 来启动一个全新的 RCOS 项目。环境配置辅助指南则是按需查看的可选材料，适合想在进入正式 RCOS 流程前先获得更多环境配置帮助的读者。
+前者告诉你 bootstrap pack 该怎么解压和使用，后者告诉你不同场景该选哪个 prompt。项目启动指南面向全新的仓库，既有代码库引入指南面向已经有代码和历史上下文的仓库。环境配置辅助指南则是按需查看的可选材料，适合想在进入正式 RCOS 流程前先获得更多环境配置帮助的读者。
 
 ## 新项目初始化
 
@@ -254,6 +255,7 @@ rcos_bootstrap_pack_with_examples.zip
 1. 准备 README、目录树、入口文件和工程师口头背景
 2. 参考：
    - `.rcos/prompts/EXISTING_CODEBASE_RCOS_BOOTSTRAP_MATERIALS_CHECKLIST.md`
+   - [RCOS_Existing_Codebase_Adoption_Guide.zh-CN.md](./RCOS_Existing_Codebase_Adoption_Guide.zh-CN.md)
 3. 在一个专门的新 conversation 中使用：
    - `.rcos/prompts/EXISTING_CODEBASE_RCOS_BOOTSTRAP_PROMPT.md`
 
