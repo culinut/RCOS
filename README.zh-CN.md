@@ -1,4 +1,4 @@
-# RCOS Bootstrap Pack
+# RCOS 启动套装
 
 English version: [README.md](./README.md)
 
