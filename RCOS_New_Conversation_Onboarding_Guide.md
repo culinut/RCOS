@@ -13,6 +13,15 @@ Typical use cases:
 
 This is not a bootstrap guide. It assumes the project already has a usable RCOS collaboration layer.
 
+## Table of contents
+
+- [1. Confirm that the project already has usable RCOS context](#1-confirm-that-the-project-already-has-usable-rcos-context)
+- [2. Start from the dedicated new-conversation onboarding prompt](#2-start-from-the-dedicated-new-conversation-onboarding-prompt)
+- [3. What a good refresh should do](#3-what-a-good-refresh-should-do)
+- [4. Suggested user workflow](#4-suggested-user-workflow)
+- [5. What you should expect back before giving the next task](#5-what-you-should-expect-back-before-giving-the-next-task)
+- [6. Copy-ready prompt for the coding agent](#copy-ready-coding-agent-prompt)
+
 ## 1. Confirm that the project already has usable RCOS context
 
 This guide is only appropriate if the repository already contains a stable RCOS context layer, especially:
@@ -82,6 +91,8 @@ Before you continue into implementation, a good onboarding refresh should usuall
 - which items still look like assumptions or open questions
 
 If the summary is vague, overconfident, or clearly skipped key files, it is worth correcting the refresh before continuing.
+
+<a id="copy-ready-coding-agent-prompt"></a>
 
 ## 6. Copy-ready prompt for the coding agent
 

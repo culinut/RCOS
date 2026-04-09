@@ -11,6 +11,17 @@ English version: [RCOS_Existing_Codebase_Adoption_Guide.md](./RCOS_Existing_Code
 - 需要一种受控方式把 RCOS 接到已有仓库上
 - 想避免一上来全仓扫描、静默扩 scope、或把猜测写进文档
 
+## 目录
+
+- [1. 先判断是否需要环境配置帮助](#1-先判断是否需要环境配置帮助)
+- [2. 先把本体 RCOS 拉到本地](#2-先把本体-rcos-拉到本地)
+- [3. 把 RCOS 接到已有仓库里](#3-把-rcos-接到已有仓库里)
+- [4. 在开启 bootstrap conversation 之前，先准备最小材料集](#4-在开启-bootstrap-conversation-之前先准备最小材料集)
+- [5. 直接从 existing-codebase bootstrap prompt 开始](#5-直接从-existing-codebase-bootstrap-prompt-开始)
+- [6. 一个好的 bootstrap conversation 应该完成什么](#6-一个好的-bootstrap-conversation-应该完成什么)
+- [7. 可直接复制给 coding agent 的 prompt](#copy-ready-coding-agent-prompt)
+- [8. bootstrap 完成后回到正常 RCOS 使用方式](#8-bootstrap-完成后回到正常-rcos-使用方式)
+
 ## 1. 先判断是否需要环境配置帮助
 
 如果你的开发环境和 coding agent 配置已经可用，这一步可以直接跳过。
@@ -86,6 +97,8 @@ English version: [RCOS_Existing_Codebase_Adoption_Guide.md](./RCOS_Existing_Code
 - 不要把产品方向重新发明一遍
 - 不要顺手进入功能开发，除非被明确要求
 
+<a id="copy-ready-coding-agent-prompt"></a>
+
 ## 7. 可直接复制给 coding agent 的 prompt
 
 如果你不想自己再组织 prompt，可以直接把下面这段贴进一个新的 coding-agent conversation。
@@ -153,5 +166,9 @@ English version: [RCOS_Existing_Codebase_Adoption_Guide.md](./RCOS_Existing_Code
 ## 8. bootstrap 完成后回到正常 RCOS 使用方式
 
 当已有仓库已经形成可用的 `.rcos/manifest/project/*` 之后，后续新 conversation 一般就不需要重复整个 bootstrap，而是应优先从项目自己的 onboarding prompt 开始。
+
+在这个 handoff 阶段，可以直接使用这份指南中的可复制 prompt：
+
+- [RCOS_New_Conversation_Onboarding_Guide.zh-CN.md](./RCOS_New_Conversation_Onboarding_Guide.zh-CN.md#copy-ready-coding-agent-prompt)
 
 也就是说，RCOS 会从“引入模式”进入“日常协作模式”。

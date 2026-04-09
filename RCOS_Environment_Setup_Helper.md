@@ -12,6 +12,12 @@ This is especially useful if you:
 - are not yet comfortable with git repos, Cursor, or coding-agent plugin setup
 - want to separate environment work from project-definition work
 
+## Table of contents
+
+- [Recommended usage](#recommended-usage)
+- [Copy-ready prompt for environment setup](#copy-ready-prompt-for-environment-setup)
+- [What to do after setup](#what-to-do-after-setup)
+
 ## Recommended usage
 
 A good pattern is:

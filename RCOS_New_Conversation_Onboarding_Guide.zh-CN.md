@@ -13,6 +13,15 @@ English version: [RCOS_New_Conversation_Onboarding_Guide.md](./RCOS_New_Conversa
 
 这不是 bootstrap 指南。它默认项目已经有可用的 RCOS 协作层。
 
+## 目录
+
+- [1. 先确认项目已经有可用的 RCOS context](#1-先确认项目已经有可用的-rcos-context)
+- [2. 优先从专门的新对话 onboarding prompt 开始](#2-优先从专门的新对话-onboarding-prompt-开始)
+- [3. 一个好的刷新过程应该做到什么](#3-一个好的刷新过程应该做到什么)
+- [4. 推荐的用户操作方式](#4-推荐的用户操作方式)
+- [5. 在进入下一任务前，你应当期待看到什么](#5-在进入下一任务前你应当期待看到什么)
+- [6. 可直接复制给 coding agent 的 prompt](#copy-ready-coding-agent-prompt)
+
 ## 1. 先确认项目已经有可用的 RCOS context
 
 只有当仓库里已经存在稳定的 RCOS context 层时，才适合使用这份指南，尤其是：
@@ -82,6 +91,8 @@ English version: [RCOS_New_Conversation_Onboarding_Guide.md](./RCOS_New_Conversa
 - 哪些仍像 assumptions 或 open questions
 
 如果这段总结过于空泛、过度自信，或者明显跳过了关键文件，最好先修正刷新结果，再进入下一步。
+
+<a id="copy-ready-coding-agent-prompt"></a>
 
 ## 6. 可直接复制给 coding agent 的 prompt
 

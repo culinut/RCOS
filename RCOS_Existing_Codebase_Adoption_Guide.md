@@ -11,6 +11,17 @@ It is especially aimed at more advanced users such as software engineers, techni
 - need a controlled way to add RCOS to an existing repository
 - want to avoid full-repo scanning, silent scope expansion, and speculative documentation
 
+## Table of contents
+
+- [1. Decide whether you need environment help first](#1-decide-whether-you-need-environment-help-first)
+- [2. Pull the core RCOS repository locally](#2-pull-the-core-rcos-repository-locally)
+- [3. Add RCOS into the existing repository](#3-add-rcos-into-the-existing-repository)
+- [4. Prepare the minimum materials before opening the bootstrap conversation](#4-prepare-the-minimum-materials-before-opening-the-bootstrap-conversation)
+- [5. Start with the existing-codebase bootstrap prompt](#5-start-with-the-existing-codebase-bootstrap-prompt)
+- [6. What the RCOS bootstrap conversation should accomplish](#6-what-the-rcos-bootstrap-conversation-should-accomplish)
+- [7. Copy-ready prompt for the coding agent](#copy-ready-coding-agent-prompt)
+- [8. Continue with normal RCOS usage after bootstrap](#8-continue-with-normal-rcos-usage-after-bootstrap)
+
 ## 1. Decide whether you need environment help first
 
 If your development environment and coding-agent setup are already working, you can skip this entirely.
@@ -86,6 +97,8 @@ A good existing-codebase RCOS bootstrap should:
 - avoid rewriting the product direction from scratch
 - avoid opportunistic feature work unless explicitly requested
 
+<a id="copy-ready-coding-agent-prompt"></a>
+
 ## 7. Copy-ready prompt for the coding agent
 
 If you want a direct prompt instead of composing one yourself, paste the following into a new coding-agent conversation.
@@ -153,5 +166,9 @@ If you want a direct prompt instead of composing one yourself, paste the followi
 ## 8. Continue with normal RCOS usage after bootstrap
 
 Once the existing repository has a usable `.rcos/manifest/project/*` layer, later conversations should usually start from the project's onboarding prompt rather than repeating the whole bootstrap process.
+
+For that handoff stage, use the direct prompt in:
+
+- [RCOS_New_Conversation_Onboarding_Guide.md](./RCOS_New_Conversation_Onboarding_Guide.md#copy-ready-coding-agent-prompt)
 
 From there, RCOS can move from adoption mode into normal day-to-day collaboration mode.

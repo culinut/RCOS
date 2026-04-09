@@ -19,6 +19,21 @@ This is only an example stack, not a mandatory setup. You can substitute other:
 
 as long as the overall workflow still follows RCOS discipline around context, planning, and approval.
 
+## Table of contents
+
+- [1. Prepare the environment](#1-prepare-the-environment)
+- [2. Pull the core RCOS repository into a local working directory](#2-pull-the-core-rcos-repository-into-a-local-working-directory)
+- [3. Create a new project directory and initialize git](#3-create-a-new-project-directory-and-initialize-git)
+- [4. Extract the bootstrap pack directly from the pulled repository](#4-extract-the-bootstrap-pack-directly-from-the-pulled-repository)
+- [5. Open the new project in your development environment](#5-open-the-new-project-in-your-development-environment)
+- [6. Use a conversational model first to clarify the project idea](#6-use-a-conversational-model-first-to-clarify-the-project-idea)
+- [7. Paste the meta-prompt from the appendix into the conversational model](#7-paste-the-meta-prompt-from-the-appendix-into-the-conversational-model)
+- [8. Give the generated bootstrap prompt to the coding agent](#8-give-the-generated-bootstrap-prompt-to-the-coding-agent)
+- [9. What Codex should accomplish during bootstrap](#9-what-codex-should-accomplish-during-bootstrap)
+- [10. Reuse the onboarding prompt in later conversations](#10-reuse-the-onboarding-prompt-in-later-conversations)
+- [11. Recommended split between the conversational model and the coding agent](#11-recommended-split-between-the-conversational-model-and-the-coding-agent)
+- [Appendix: Meta-prompt to paste into ChatGPT](#appendix-meta-prompt-to-paste-into-chatgpt)
+
 ## 1. Prepare the environment
 
 Before starting, make sure these basics are already in place:

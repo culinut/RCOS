@@ -19,6 +19,21 @@ English version: [RCOS_Project_Startup_Guide.md](./RCOS_Project_Startup_Guide.md
 
 只要整体流程仍然符合 RCOS 的上下文、规划和审批纪律即可。
 
+## 目录
+
+- [1. 先准备环境](#1-先准备环境)
+- [2. 先把本体 RCOS 拉到本地工作目录](#2-先把本体-rcos-拉到本地工作目录)
+- [3. 创建新的项目目录并初始化 git](#3-创建新的项目目录并初始化-git)
+- [4. 从 pulled repo 直接解压 bootstrap pack](#4-从-pulled-repo-直接解压-bootstrap-pack)
+- [5. 在你的开发环境中打开新项目](#5-在你的开发环境中打开新项目)
+- [6. 先用对话模型把项目想法聊清楚](#6-先用对话模型把项目想法聊清楚)
+- [7. 把附录中的元提示词贴给对话模型](#7-把附录中的元提示词贴给对话模型)
+- [8. 把生成的 bootstrap prompt 交给 coding agent](#8-把生成的-bootstrap-prompt-交给-coding-agent)
+- [9. Codex 在 bootstrap 中的目标](#9-codex-在-bootstrap-中的目标)
+- [10. 后续 conversation 优先复用 onboarding prompt](#10-后续-conversation-优先复用-onboarding-prompt)
+- [11. 对话模型与 coding agent 的推荐分工](#11-对话模型与-coding-agent-的推荐分工)
+- [附录：可直接复制给对话模型的元提示词](#附录可直接复制给对话模型的元提示词)
+
 ## 1. 先准备环境
 
 建议先确认这些基础条件已经就绪：

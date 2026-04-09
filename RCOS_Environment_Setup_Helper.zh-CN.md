@@ -12,6 +12,12 @@ English version: [RCOS_Environment_Setup_Helper.md](./RCOS_Environment_Setup_Hel
 - 不熟悉 git repo、Cursor、或 coding agent 插件配置
 - 希望先把环境问题拆开，不和项目设计讨论混在一起
 
+## 目录
+
+- [推荐使用方式](#推荐使用方式)
+- [可直接复制的环境配置 prompt](#可直接复制的环境配置-prompt)
+- [完成之后做什么](#完成之后做什么)
+
 ## 推荐使用方式
 
 建议你：
