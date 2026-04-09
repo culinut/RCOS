@@ -1,0 +1,290 @@
+{
+    "source": {
+      "document": "三省书_monthly.pdf",
+      "notes": [
+        "根据使用说明，三省书用于每日晨起、午后、晚间三次自省打分。",
+        "内容包含六度、七善、八正道；其中表格中的自省维度为 12 项，每项 1-5 分。",
+        "当前 seed 仅基于 PDF 可见内容与已整理项目上下文生成，后续需结合实现继续校对。"
+      ]
+    },
+    "time_slices": [
+      "morning",
+      "midday",
+      "evening"
+    ],
+    "pre_read_requirements": {
+      "liudu": [
+        "布施",
+        "持戒",
+        "忍辱",
+        "精进",
+        "禅定",
+        "般若"
+      ],
+      "bazhengdao": [
+        "正见",
+        "正思维",
+        "正念",
+        "正语",
+        "正业",
+        "正命",
+        "正精进",
+        "正定"
+      ]
+    },
+    "dimensions": [
+      {
+        "id": "ci",
+        "name": "慈",
+        "polarity": "positive",
+        "definition": "对你所遇见的人事物，主动关爱、心怀善意，乐于帮助，从心底希望他人幸福。",
+        "low_anchor": [
+          "对他人冷漠",
+          "缺乏善意",
+          "不愿帮助"
+        ],
+        "high_anchor": [
+          "主动关爱他人",
+          "心怀善意",
+          "乐于帮助",
+          "真心希望他人幸福"
+        ],
+        "score_guidance": {
+          "low_range": "1-2",
+          "high_range": "4-5"
+        }
+      },
+      {
+        "id": "bei",
+        "name": "悲",
+        "polarity": "positive",
+        "definition": "面对他人的痛苦或是喜悦、幸或是不幸都能感同身受，并有意愿去缓解，耐心倾听和开解。",
+        "low_anchor": [
+          "对他人的遭遇升起评判",
+          "无视他人的发生",
+          "缺乏倾听与开解意愿"
+        ],
+        "high_anchor": [
+          "感同身受",
+          "愿意缓解他人痛苦",
+          "耐心倾听",
+          "愿意开解"
+        ],
+        "score_guidance": {
+          "low_range": "1-2",
+          "high_range": "4-5"
+        }
+      },
+      {
+        "id": "xi",
+        "name": "喜",
+        "polarity": "positive",
+        "definition": "为他人的成就、喜悦而真心高兴，不嫉妒，能共享他人的快乐，心态积极阳光。",
+        "low_anchor": [
+          "面无表情",
+          "内心酸溜溜",
+          "嫉妒他人好消息"
+        ],
+        "high_anchor": [
+          "由衷随喜",
+          "热烈回应他人的好消息",
+          "真心为他人成就高兴"
+        ],
+        "score_guidance": {
+          "low_range": "1-2",
+          "high_range": "4-5"
+        }
+      },
+      {
+        "id": "she",
+        "name": "舍",
+        "polarity": "positive",
+        "definition": "不执着于得失、恩怨，对物质、名利、情感能淡然放下，豁达面对变化。",
+        "low_anchor": [
+          "争抢功劳",
+          "贪图小利",
+          "斤斤计较"
+        ],
+        "high_anchor": [
+          "优先考虑他人",
+          "不斤斤计较",
+          "对得失较能放下",
+          "豁达面对变化"
+        ],
+        "score_guidance": {
+          "low_range": "1-2",
+          "high_range": "4-5"
+        }
+      },
+      {
+        "id": "yuan",
+        "name": "愿",
+        "polarity": "positive",
+        "definition": "内在怀有大愿，并愿意付之行动，坚定不移，所事有依，所行皆愿。",
+        "low_anchor": [
+          "缺乏明确愿力",
+          "行动与愿不一致",
+          "容易动摇"
+        ],
+        "high_anchor": [
+          "内在有大愿",
+          "愿意付诸行动",
+          "坚定不移",
+          "所行皆愿"
+        ],
+        "score_guidance": {
+          "low_range": "1-2",
+          "high_range": "4-5"
+        }
+      },
+      {
+        "id": "zhi",
+        "name": "智",
+        "polarity": "positive",
+        "definition": "面对问题能回到内在，核对自心，能洞察本质，做出明智决策，持续成长，打破认知。",
+        "low_anchor": [
+          "慌乱无措",
+          "乱做决定",
+          "缺乏洞察"
+        ],
+        "high_anchor": [
+          "淡定从容",
+          "游刃有余地解决问题",
+          "能洞察本质",
+          "做出明智决策"
+        ],
+        "score_guidance": {
+          "low_range": "1-2",
+          "high_range": "4-5"
+        }
+      },
+      {
+        "id": "xing",
+        "name": "行",
+        "polarity": "positive",
+        "definition": "行动力强，将想法、计划付诸实践，做事有始有终，勇于克服困难推进任务。",
+        "low_anchor": [
+          "拖延不动",
+          "想法停留在计划层面",
+          "行动无法持续"
+        ],
+        "high_anchor": [
+          "行动力强",
+          "将想法付诸实践",
+          "有始有终",
+          "推进每日三练"
+        ],
+        "score_guidance": {
+          "low_range": "1-2",
+          "high_range": "4-5"
+        }
+      },
+      {
+        "id": "tan",
+        "name": "贪",
+        "polarity": "negative",
+        "definition": "对财物、荣誉、享受等过度渴望，不知足，有超出合理范围的占有欲。",
+        "low_anchor": [
+          "心生嫉妒",
+          "暗怨不公",
+          "贪念重"
+        ],
+        "high_anchor": [
+          "真心祝贺他人",
+          "较少占有欲",
+          "较能知足"
+        ],
+        "score_guidance": {
+          "low_range": "1-2",
+          "high_range": "4-5"
+        },
+        "notes": "原文以负向描述开头，但高分示例对应较少贪念。实现时应统一采用“高分 = 更符合修行方向”的语义。"
+      },
+      {
+        "id": "chen",
+        "name": "嗔",
+        "polarity": "negative",
+        "definition": "容易生气、发怒，对不如意事心怀怨恨，情绪易失控，对他人产生攻击性。",
+        "low_anchor": [
+          "大发脾气",
+          "影响他人",
+          "嗔心重"
+        ],
+        "high_anchor": [
+          "平和接受",
+          "情绪较稳",
+          "较少攻击性"
+        ],
+        "score_guidance": {
+          "low_range": "1-2",
+          "high_range": "4-5"
+        },
+        "notes": "实现时需避免把“嗔”的高低与“高分高负面”混淆。"
+      },
+      {
+        "id": "chi",
+        "name": "痴",
+        "polarity": "negative",
+        "definition": "不明事理，固执己见，行为无法自拔，缺乏对真相的探究。",
+        "low_anchor": [
+          "坚持错误工作方法",
+          "不听劝诫"
+        ],
+        "high_anchor": [
+          "善于接纳新思维",
+          "愿意探究真相",
+          "较能修正自己"
+        ],
+        "score_guidance": {
+          "low_range": "1-2",
+          "high_range": "4-5"
+        }
+      },
+      {
+        "id": "man",
+        "name": "慢",
+        "polarity": "negative",
+        "definition": "骄傲自大，轻视他人，自视过高，在言行中表现出优越感，不愿向他人学习。",
+        "low_anchor": [
+          "贬低他人",
+          "背后评判别人",
+          "说是非",
+          "自吹自擂"
+        ],
+        "high_anchor": [
+          "谦虚聆听",
+          "愿意学习",
+          "较少优越感"
+        ],
+        "score_guidance": {
+          "low_range": "1-2",
+          "high_range": "4-5"
+        }
+      },
+      {
+        "id": "yi",
+        "name": "疑",
+        "polarity": "negative",
+        "definition": "对人、事常持怀疑态度，缺少信任，犹豫不决，阻碍自身行动与成长。",
+        "low_anchor": [
+          "无端猜疑",
+          "畏缩不前",
+          "难以推进"
+        ],
+        "high_anchor": [
+          "积极沟通推进",
+          "较有信任",
+          "较少犹豫阻滞"
+        ],
+        "score_guidance": {
+          "low_range": "1-2",
+          "high_range": "4-5"
+        }
+      }
+    ],
+    "implementation_notes": [
+      "当前 seed 采用“高分 = 更符合修行方向 / 更少负向行为”的统一语义。",
+      "对负向维度（贪、嗔、痴、慢、疑），实现时应避免直接将维度名等同于高分状态。",
+      "后续可将每个维度扩展为 1-5 的更细颗粒锚点，而非只保留 low/high 两端。"
+    ]
+  }

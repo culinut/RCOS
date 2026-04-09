@@ -45,8 +45,6 @@
 
 - `.rcos_examples/news_agent_mvp/.rcos/*`
 - `.rcos_examples/news_agent_mvp/.cursor/*`
-- `.rcos_examples/SanXing-AsItIs/.rcos/*`
-- `.rcos_examples/SanXing-AsItIs/.cursor/*`
 
 它们只能帮助 AI 学习：
 - 一个成功项目的 RCOS 目录组织方式
@@ -121,13 +119,6 @@ AI 不应直接继承其中的：
 - 你希望给 AI 一个“成功项目长什么样”的结构参考
 
 如果你只是想快速开工，而新项目和旧项目差异很大，可以完全不让 AI 读 `.rcos_examples/`。
-
-补充原则：
-
-- 如果某个 contributor project 沉淀出新的 RCOS 进化，并准备同步回主 RCOS 仓库：
-  - 优先把它同步到与 contributor project 对应的 example seed
-  - 不要把该进化误写进无关 example seed
-  - 仍然要保持 example seed 与活跃 truth layer 的边界
 
 ---
 

@@ -294,6 +294,11 @@ The AI should not directly inherit from the example seed:
 - module authority
 - project status
 
+Example seeds may also demonstrate:
+
+- roadmap planning and tracking as a first-class project-specific RCOS artifact
+- how a contributor project can surface reusable RCOS improvements for possible upstream sync
+
 ## Prompt Navigation
 
 If you are not sure which prompt to use, start with:
@@ -330,6 +335,18 @@ If you maintain this repository over time, it helps to keep these habits:
   - one prompt
   - one checklist
   - one usage note
+- when a durable RCOS improvement is discovered in a contributor project:
+  - first generalize it beyond the source project
+  - tag the contributor project explicitly
+  - if syncing an example seed, prefer the seed path that matches the contributor project
+  - do not write contributor-project evolution into an unrelated example seed
+  - sync templates, prompts, and example seed together when appropriate
+  - do not upstream-sync it silently without human confirmation
+- when a new project-specific file becomes durably useful, update:
+  - templates
+  - prompts
+  - example seed
+  - documentation references
 - always keep the distinction clear between:
   - reusable templates
   - the active project truth layer

@@ -1,0 +1,56 @@
+modules:
+
+  scoring_model:
+    description: >
+      核心模块。负责将《三省书》扫描件及相关上下文中的行为描述，
+      转换为结构化评分模型。当前语义工作基线位于
+      `.rcos/manifest/project/scoring_model_seed.json`，
+      其结构已确认，但逐字级 PDF 校勘仍待继续完成。
+    status: in_progress
+    authority: TBD
+    depends_on: []
+
+  checkin:
+    description: >
+      每日三次 check-in 执行逻辑。
+    status: designed
+    depends_on:
+      - scoring_model
+
+  eightfold_display:
+    description: >
+      八正道内容展示模块，作为 check-in 前置步骤。
+    status: designed
+    depends_on: []
+
+  storage:
+    description: >
+      SQLite 数据存储层。当前仅确认存在空数据库文件占位，
+      尚未确认已有 schema 或独立实现模块。
+    status: designed
+    depends_on: []
+
+  api:
+    description: >
+      FastAPI 接口层。当前已确认存在最小应用入口、health endpoint、
+      middleware 与 lifecycle 集成。
+    status: partial
+    depends_on:
+      - storage
+      - checkin
+
+  ui:
+    description: >
+      前端交互层（分步骤 UI）。
+    status: not_started
+    depends_on:
+      - scoring_model
+      - api
+
+  export_pdf:
+    description: >
+      将 check-in 记录导出为模拟手填纸质《三省书》效果的 PDF。
+      当前仅确认存在 pdf/export 目录占位。
+    status: planned
+    depends_on:
+      - storage

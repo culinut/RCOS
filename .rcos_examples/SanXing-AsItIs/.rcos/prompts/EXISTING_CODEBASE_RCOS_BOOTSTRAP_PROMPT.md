@@ -48,7 +48,6 @@ Phase 3
   - `.rcos/manifest/project/PROJECT_ONBOARDING_PROMPT.md`
   - `.rcos/manifest/project/PROJECT_COLLABORATION_PROMPT.md`
   - `.rcos/manifest/project/PROJECT_RCOS_MAINTENANCE.md`
-  - `.rcos/manifest/project/PROJECT_ROADMAP.md`
   - `.rcos/manifest/project/CURRENT_BASELINE.md`
   - `.rcos/manifest/project/module_index.yaml`
 
@@ -57,11 +56,6 @@ Phase 3
 - 不要一上来扫描整个 repo
 - 未确认前不要大面积生成 project-specific RCOS 文件
 - 不要顺手做业务代码改造，除非我明确要求
-- 如果 bootstrap 过程中出现了可复用的 RCOS 改进：
-  - 先把它写清楚是项目内实践还是通用经验
-  - 标记 contributor project
-  - 提议是否回流主 RCOS 仓库
-  - 在得到我的确认前不要直接改上游 RCOS 仓库
 - 如果 scope 必须扩大，必须说明：
   - 为什么
   - 要读哪些文件
@@ -74,3 +68,4 @@ Phase 3
 
 上述 instruction 为了便于理解使用英文思维组织，但后续交流和生成请保持以中文为基础。
 ```
+

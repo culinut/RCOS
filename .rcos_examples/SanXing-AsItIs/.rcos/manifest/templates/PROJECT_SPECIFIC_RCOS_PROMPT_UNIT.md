@@ -63,7 +63,6 @@ manifest/project/
   PROJECT_ONBOARDING_PROMPT.md
   PROJECT_COLLABORATION_PROMPT.md
   PROJECT_RCOS_MAINTENANCE.md
-  PROJECT_ROADMAP.md
 ```
 
 ## Bootstrap Prompt (copyable)
@@ -86,7 +85,6 @@ Required files:
 - PROJECT_ONBOARDING_PROMPT.md
 - PROJECT_COLLABORATION_PROMPT.md
 - PROJECT_RCOS_MAINTENANCE.md
-- PROJECT_ROADMAP.md
 
 Use all and only the materials I provide:
 - project descriptions
@@ -146,11 +144,6 @@ File requirements:
 - define when project-specific RCOS files must be updated
 - define what kinds of code changes trigger which file updates
 
-8. PROJECT_ROADMAP.md
-- define the recommended implementation order
-- define milestone-level deliverables and acceptance checks
-- define the current recommended path from baseline to next phase
-
 Referencing the attached zip, please review and follow all rules in every file in rcos/manifest/templates, and following the instructions/examples in every file in rcos/manifest/project, populate true details to your fullest knowledge and belief, generate all the populated project-specific RCOS files. Finally, gather all the generated files in a downloadable zip.
 （我这里写了英文便于你理解，请还是用中文交流和生成）
 ```
@@ -193,7 +186,6 @@ Phase 3:
   - PROJECT_ONBOARDING_PROMPT.md
   - PROJECT_COLLABORATION_PROMPT.md
   - PROJECT_RCOS_MAINTENANCE.md
-  - PROJECT_ROADMAP.md
   - CURRENT_BASELINE.md
   - module_index.yaml
 
@@ -253,7 +245,6 @@ manifest/project/
   PROJECT_ONBOARDING_PROMPT.md
   PROJECT_COLLABORATION_PROMPT.md
   PROJECT_RCOS_MAINTENANCE.md
-  PROJECT_ROADMAP.md
   CURRENT_BASELINE.md
   module_index.yaml
 
@@ -298,10 +289,9 @@ Context source priority:
 2. manifest/project/CODEBASE_MAP.md
 3. manifest/project/PROJECT_BACKGROUND.md
 4. manifest/project/PROJECT_STATUS.md
-5. manifest/project/PROJECT_ROADMAP.md
-6. manifest/project/PROJECT_ASSUMPTIONS.md
-7. manifest/project/module_index.yaml
-8. current task files
+5. manifest/project/PROJECT_ASSUMPTIONS.md
+6. manifest/project/module_index.yaml
+7. current task files
 
 Execution rules:
 1. Start with:
@@ -347,7 +337,6 @@ Read and follow:
 - manifest/project/PROJECT_BACKGROUND.md
 - manifest/project/CODEBASE_MAP.md
 - manifest/project/PROJECT_STATUS.md
-- manifest/project/PROJECT_ROADMAP.md
 - manifest/project/PROJECT_ASSUMPTIONS.md
 - manifest/project/module_index.yaml
 
@@ -365,5 +354,3 @@ Then:
 - Use the bootstrap prompt once per project initialization or whenever project-specific files are missing.
 - Use the daily prompt for normal work.
 - Use the onboarding prompt when starting a fresh AI conversation.
-- If a contributor project produces a durable RCOS improvement, summarize it locally first, tag the contributor project, and propose an upstream sync to the main RCOS repo only after human confirmation.
-- If syncing an example seed, prefer the example-seed path that matches the contributor project, and do not write the evolution into an unrelated seed.

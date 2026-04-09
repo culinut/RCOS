@@ -126,7 +126,6 @@ Always provide:
 - `manifest/project/PROJECT_BACKGROUND.md`
 - `manifest/project/CODEBASE_MAP.md`
 - `manifest/project/PROJECT_STATUS.md`
-- `manifest/project/PROJECT_ROADMAP.md`
 - `manifest/project/PROJECT_ASSUMPTIONS.md`
 - `manifest/project/module_index.yaml`
 
@@ -168,7 +167,6 @@ They should include:
 - `PROJECT_ONBOARDING_PROMPT.md`
 - `PROJECT_COLLABORATION_PROMPT.md`
 - `PROJECT_RCOS_MAINTENANCE.md`
-- `PROJECT_ROADMAP.md`
 
 These files are part of the operating system, not optional notes.
 
@@ -183,27 +181,6 @@ Update them when:
 - a major feature lands
 - runtime assumptions change
 - the product surface or target users change
-- the recommended implementation order or milestone structure changes
-
----
-
-# Voluntary Upstream Sync
-
-Sometimes a real project discovers a reusable RCOS improvement.
-
-Examples:
-- a new high-value project-specific RCOS file such as `PROJECT_ROADMAP.md`
-- a more durable onboarding or maintenance rule
-- a better way to track execution order and milestones
-
-When that happens:
-1. first stabilize it in the contributor project
-2. summarize what is reusable vs what is project-specific
-3. tag the contributor project explicitly
-4. if syncing an example seed, prefer the seed path that matches the contributor project
-5. do not write contributor-project evolution into an unrelated example seed
-6. propose syncing it back to the main RCOS repository
-7. wait for human confirmation before updating templates, prompts, or example seeds
 
 ---
 

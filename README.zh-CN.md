@@ -292,6 +292,11 @@ AI 不应直接继承 example seed 中的：
 - module authority
 - 项目状态
 
+example seed 也可以示范：
+
+- 把 roadmap planning / tracking 作为正式的 project-specific RCOS 文件
+- contributor project 如何把可复用的 RCOS 改进提议同步回主 RCOS 仓库
+
 ## Prompt 导航
 
 如果不确定该用哪个 prompt，优先看：
@@ -328,6 +333,18 @@ AI 不应直接继承 example seed 中的：
   - 一个 prompt
   - 一个 checklist
   - 一段 usage note
+- 如果某个 contributor project 沉淀出了可复用的 RCOS 改进：
+  - 先把它抽象成通用经验，而不是直接复制项目事实
+  - 显式标记 contributor project
+  - 如果要同步 example seed，优先同步到与 contributor project 对应的 seed 路径
+  - 不要把某个项目的 RCOS 进化误写进无关 example seed
+  - 在合适时同步更新 templates、prompts 和 example seed
+  - 未经人类确认，不要静默回流到主 RCOS 仓库
+- 如果某种新的 project-specific 文件被证明长期有价值，要同时更新：
+  - templates
+  - prompts
+  - example seed
+  - 文档引用
 - 始终区分：
   - 通用模板
   - 当前项目 truth layer
